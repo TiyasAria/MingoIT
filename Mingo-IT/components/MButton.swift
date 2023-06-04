@@ -19,6 +19,11 @@ struct MButton: View {
      - - - Custom Width Button - - -
      MButton(text: "I am a button", width: CGFloat(100))
      
+     - - - Custom Color Button - - -
+     MButton(text: "I am a button", background: .black, textColor: .white) OR
+    
+     MButton(text: "I am a button", background: Color.init(hex: "#000"), textColor: Color.init(hex: "#FFF"))
+     
      - - - Callback Function - - -
      MButton(text: "I Understand", isFullWidth: true, action: { #code here }) OR
      
@@ -34,6 +39,8 @@ struct MButton: View {
     var width: CGFloat = 100.0
     var isFullWidth: Bool = false
     var action: () -> () = {}
+    var textColor: Color = .white
+    var background: Color = .blue
     
     // MARK: State
     @GestureState private var isPressing = false
@@ -57,12 +64,14 @@ struct MButton: View {
                     .padding(10)
             }
         }
+        .foregroundColor(textColor)
         .background(
             RoundedRectangle(cornerRadius: 18)
                 .shadow(color: .black,
                         radius: 0, x: 0, y: 4)
                 .opacity(0.25)
         )
+        .tint(background)
         .padding(20)
         .buttonStyle(.borderedProminent)
         .buttonBorderShape(.roundedRectangle(radius: 12))
