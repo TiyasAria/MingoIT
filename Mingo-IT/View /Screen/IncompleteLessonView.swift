@@ -40,8 +40,8 @@ struct IncompleteLessonView: View {
             Spacer()
             
             VStack(spacing: -20) {
-                MButton(text: "Try Again", isFullWidth: true, background: Color.init(hex: "54AAB4"))
-                MButton(text: "Continue", isFullWidth: true, background: Color.init(hex: "FF8C41"))
+                MButton(text: "Try Again", isFullWidth: true, background: Color("primaryBlue"))
+                MButton(text: "Continue", isFullWidth: true, background: Color("primaryOrange"))
             }
         }
     }

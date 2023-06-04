@@ -34,12 +34,12 @@ struct CompleteLessonView: View {
             .fontWeight(.bold)
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color.init(hex: "54AAB4"), lineWidth: 2)
+                    .stroke(Color("primaryBlue"), lineWidth: 2)
             )
             
             Spacer()
             
-            MButton(text: "Continue", isFullWidth: true, background: Color.init(hex: "FF8C41"))
+            MButton(text: "Continue", isFullWidth: true, background: Color("primaryOrange"))
         }
     }
 }

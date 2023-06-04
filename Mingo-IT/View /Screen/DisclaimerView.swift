@@ -30,7 +30,7 @@ struct DisclaimerView: View {
                 Image("DisclaimerOwl")
             }
             Spacer()
-            MButton(text: "I Understand", isFullWidth: true, background: Color.init(hex: "FF8C41"))
+            MButton(text: "I Understand", isFullWidth: true, background: Color("primaryOrange"))
         }
     }
 }

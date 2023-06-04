@@ -29,9 +29,9 @@ struct BackgroundStoryView: View {
                     .foregroundColor(.white)
                 
                 
-                MButton(text: "Next", isFullWidth: true, background: Color.init(hex: "FF8C41"))
+                MButton(text: "Next", isFullWidth: true, background: Color("primaryOrange"))
             }
-            .background(Color.init(hex: "54AAB4"))
+            .background(Color("primaryBlue"))
             .frame(
                   minWidth: 0,
                   maxWidth: .infinity,
