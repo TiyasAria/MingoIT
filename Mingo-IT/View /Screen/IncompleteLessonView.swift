@@ -29,7 +29,7 @@ struct IncompleteLessonView: View {
                 Text("Programming + 1")
             }
             .frame(width: 310)
-            .padding(15)
+            .padding(17)
             .font(.title3)
             .fontWeight(.bold)
             .overlay(

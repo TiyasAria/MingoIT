@@ -64,6 +64,7 @@ struct MButton: View {
                     .padding(10)
             }
         }
+        .fontWeight(.bold)
         .foregroundColor(textColor)
         .background(
             RoundedRectangle(cornerRadius: 18)

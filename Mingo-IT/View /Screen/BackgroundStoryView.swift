@@ -21,8 +21,10 @@ struct BackgroundStoryView: View {
                     .font(.title2)
                     .fontWeight(.bold)
                     .padding(20)
+                    .offset(y: 5)
                 
                 Text("Lorem ipsum dolor sit amet consectetur. Tortor euismod eleifend luctus ultricies varius leo est imperdiet. Fermentum morbi hendrerit velit massa in. Ut metus leo in nec neque sed senectus vulputate mauris. Id hac eget et nec.")
+                    .frame(width: 325)
                     .multilineTextAlignment(.center)
                     .foregroundColor(.white)
                 
@@ -39,7 +41,7 @@ struct BackgroundStoryView: View {
                 )
             .cornerRadius(30)
         }
-        .offset(y: 175)
+        .offset(y: 150)
     }
 }
 
