@@ -17,9 +17,11 @@ struct BackgroundStoryScreen: View {
                 .padding(.horizontal, 24)
                 .padding(.vertical, 30)
             
+            Spacer()
+            
             ZStack{
                 Rectangle()
-                    .frame(height: 500)
+                    .frame(height: 300)
                     .foregroundColor(Color("primaryBlue"))
                   
                 VStack{

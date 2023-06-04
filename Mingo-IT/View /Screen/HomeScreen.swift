@@ -21,16 +21,7 @@ struct HomeScreen: View {
             Text(currentUsername ?? "Null")
                 .font(.title)
             
-            Text("Sign Out")
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity)
-                .frame(height: 60)
-                .background(Color("primaryBlue"))
-                .onTapGesture {
-                    currentUsername = ""
-                    currentUserSignIn = false
-                }
-            
+            MButton(text: "Sign Out", isFullWidth: true, background: Color("primaryBlue"))
         }
         .padding(.horizontal, 24)
     }
