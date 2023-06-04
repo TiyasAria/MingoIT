@@ -11,7 +11,7 @@ import SwiftUI
 struct Mingo_ITApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+          SplashScreen()
         }
     }
 }
