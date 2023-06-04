@@ -17,6 +17,7 @@
 		8C3E96DA2A2A2213006B13B4 /* DisclaimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3E96D92A2A2213006B13B4 /* DisclaimerView.swift */; };
 		8C3E96E32A2C33C3006B13B4 /* CompleteLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3E96E22A2C33C3006B13B4 /* CompleteLessonView.swift */; };
 		8C3E96E52A2C378E006B13B4 /* IncompleteLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3E96E42A2C378E006B13B4 /* IncompleteLessonView.swift */; };
+		8C3E96E72A2C3943006B13B4 /* BackgroundStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3E96E62A2C3943006B13B4 /* BackgroundStoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		8C3E96D92A2A2213006B13B4 /* DisclaimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerView.swift; sourceTree = "<group>"; };
 		8C3E96E22A2C33C3006B13B4 /* CompleteLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteLessonView.swift; sourceTree = "<group>"; };
 		8C3E96E42A2C378E006B13B4 /* IncompleteLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncompleteLessonView.swift; sourceTree = "<group>"; };
+		8C3E96E62A2C3943006B13B4 /* BackgroundStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundStoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				8C3E96E42A2C378E006B13B4 /* IncompleteLessonView.swift */,
 				8C1BBCD62A26FDFE007090F3 /* Assets.xcassets */,
 				8C1BBCD82A26FDFE007090F3 /* Preview Content */,
+				8C3E96E62A2C3943006B13B4 /* BackgroundStoryView.swift */,
 			);
 			path = "Mingo-IT";
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				8C1BBCE72A2712E9007090F3 /* MButton.swift in Sources */,
 				8C3E96E52A2C378E006B13B4 /* IncompleteLessonView.swift in Sources */,
 				8C3E96E32A2C33C3006B13B4 /* CompleteLessonView.swift in Sources */,
+				8C3E96E72A2C3943006B13B4 /* BackgroundStoryView.swift in Sources */,
 				8C1BBCE12A27015F007090F3 /* MainView.swift in Sources */,
 				8C1BBCD32A26FDFE007090F3 /* Mingo_ITApp.swift in Sources */,
 			);
