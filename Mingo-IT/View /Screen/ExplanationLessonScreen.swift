@@ -8,13 +8,85 @@
 import SwiftUI
 
 struct ExplanationLessonScreen: View {
+    let explanation : DataExplanationLesson
+   
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack() {
+            
+            //            Image(systemName: "xmark")
+            //                .frame(width: 200, height: 200)
+            //                .foregroundColor(.black)
+            
+            Image(explanation.image)
+                .padding(.vertical, 75)
+            
+            ZStack{
+                Color("primaryBlue")
+                
+                VStack{
+                    Spacer()
+
+                    Text(explanation.title)
+                        .font(.custom("SFProRounded-Bold", size: 24))
+                        .padding(.horizontal,24)
+                        .foregroundColor(.white)
+                        .offset(y: 5)
+                    Spacer()
+
+                    Text(explanation.description)
+                        .font(.custom("SFProRounded-Reguler", size: 20))
+                        .padding(.horizontal,24)
+//                            .frame(width: 325)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.white)
+                     
+                    
+                    Spacer()
+                    
+                    MButton(text: "Next",
+                            isFullWidth: true,
+                            action : {
+                        NavigationLink(destination: MaterialScreen()) {
+                            Text("")
+                        }
+                            },
+                            background: Color("primaryOrange")
+                    )
+
+                   
+                    
+                    Spacer()
+
+                }
+              
+            }
+            .clipShape(RoundedCorner(radius: 30, corners: [.topLeft, .topRight]))
+            
+            
+        }
+        .ignoresSafeArea()
+        
     }
+    
+    struct RoundedCorner: Shape {
+        var radius: CGFloat = .infinity
+        var corners: UIRectCorner = .allCorners
+        
+        func path(in rect: CGRect) -> Path {
+            let path = UIBezierPath(roundedRect: rect,
+                                    byRoundingCorners: corners,
+                                    cornerRadii: CGSize(width: radius, height: radius))
+            return Path(path.cgPath)
+        }
+    }
+    
+    
+    
 }
 
 struct ExplanationLessonScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ExplanationLessonScreen()
+        ExplanationLessonScreen(explanation: dataLesson[0])
     }
 }

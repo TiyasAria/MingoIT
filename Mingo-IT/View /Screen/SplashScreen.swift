@@ -15,13 +15,11 @@ struct SplashScreen: View {
     
     var body: some View {
         ZStack{
-           
-            
             if self.isActive {
                 if currentUserSignIn {
                     HomeScreen()
                 } else {
-                   InputNameScreen()
+                    OnBoardingScreen()
                 }
                
             } else {

@@ -8,8 +8,28 @@
 import SwiftUI
 
 struct OnBoardingScreen: View {
+    /*
+     on boarding screen
+     0 - disclamer screen
+     1- input screen
+     2 - Bg Screen
+     */
+    
+    @State var onBoardingState : Int = 0
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            switch onBoardingState{
+            case 0 :
+                DisclaimerView()
+            case 1 :
+                InputNameScreen()
+            case 2 :
+               BackgroundStoryView()
+            default :
+                Text("Default screen")
+            }
+        }
     }
 }
 

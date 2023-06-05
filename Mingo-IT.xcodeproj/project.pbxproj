@@ -19,6 +19,10 @@
 		5721C6352A2ADB050010108C /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5721C6342A2ADB050010108C /* SplashScreen.swift */; };
 		5721C6372A2AF0610010108C /* InputNameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5721C6362A2AF0610010108C /* InputNameScreen.swift */; };
 		572B07372A2C39A200E341A1 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572B07362A2C39A200E341A1 /* HomeScreen.swift */; };
+		57D3DE182A2CDC9A00EC774D /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D3DE172A2CDC9A00EC774D /* OnBoardingScreen.swift */; };
+		57D3DE1A2A2CDCCA00EC774D /* ExplanationLessonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D3DE192A2CDCCA00EC774D /* ExplanationLessonScreen.swift */; };
+		57D3DE1C2A2CDE5200EC774D /* DataExplanationLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D3DE1B2A2CDE5200EC774D /* DataExplanationLesson.swift */; };
+		57F3AECA2A2D6A3700E018DB /* MaterialScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F3AEC92A2D6A3700E018DB /* MaterialScreen.swift */; };
 		8C1BBCD32A26FDFE007090F3 /* Mingo_ITApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBCD22A26FDFE007090F3 /* Mingo_ITApp.swift */; };
 		8C1BBCD52A26FDFE007090F3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1BBCD42A26FDFE007090F3 /* ContentView.swift */; };
 		8C1BBCD72A26FDFE007090F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C1BBCD62A26FDFE007090F3 /* Assets.xcassets */; };
@@ -45,6 +49,10 @@
 		5721C6342A2ADB050010108C /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		5721C6362A2AF0610010108C /* InputNameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputNameScreen.swift; sourceTree = "<group>"; };
 		572B07362A2C39A200E341A1 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		57D3DE172A2CDC9A00EC774D /* OnBoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreen.swift; sourceTree = "<group>"; };
+		57D3DE192A2CDCCA00EC774D /* ExplanationLessonScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationLessonScreen.swift; sourceTree = "<group>"; };
+		57D3DE1B2A2CDE5200EC774D /* DataExplanationLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExplanationLesson.swift; sourceTree = "<group>"; };
+		57F3AEC92A2D6A3700E018DB /* MaterialScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialScreen.swift; sourceTree = "<group>"; };
 		8C1BBCCF2A26FDFE007090F3 /* Mingo-IT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mingo-IT.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C1BBCD22A26FDFE007090F3 /* Mingo_ITApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mingo_ITApp.swift; sourceTree = "<group>"; };
 		8C1BBCD42A26FDFE007090F3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +80,7 @@
 		5721C6192A2ACD660010108C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				57D3DE1B2A2CDE5200EC774D /* DataExplanationLesson.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -103,13 +112,13 @@
 		5721C61D2A2ACD940010108C /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				8C3E96D92A2A2213006B13B4 /* DisclaimerView.swift */,
+				57D3DE162A2CDC7500EC774D /* OnBoardingView */,
 				5721C6342A2ADB050010108C /* SplashScreen.swift */,
-				5721C6362A2AF0610010108C /* InputNameScreen.swift */,
 				8C3E96E22A2C33C3006B13B4 /* CompleteLessonView.swift */,
-				8C3E96E62A2C3943006B13B4 /* BackgroundStoryView.swift */,
 				8C3E96E42A2C378E006B13B4 /* IncompleteLessonView.swift */,
 				572B07362A2C39A200E341A1 /* HomeScreen.swift */,
+				57D3DE192A2CDCCA00EC774D /* ExplanationLessonScreen.swift */,
+				57F3AEC92A2D6A3700E018DB /* MaterialScreen.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -128,6 +137,17 @@
 				5721C6242A2AD8920010108C /* SF-Pro-Rounded-Ultralight.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		57D3DE162A2CDC7500EC774D /* OnBoardingView */ = {
+			isa = PBXGroup;
+			children = (
+				8C3E96D92A2A2213006B13B4 /* DisclaimerView.swift */,
+				8C3E96E62A2C3943006B13B4 /* BackgroundStoryView.swift */,
+				5721C6362A2AF0610010108C /* InputNameScreen.swift */,
+				57D3DE172A2CDC9A00EC774D /* OnBoardingScreen.swift */,
+			);
+			path = OnBoardingView;
 			sourceTree = "<group>";
 		};
 		8C1BBCC62A26FDFE007090F3 = {
@@ -250,13 +270,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57D3DE182A2CDC9A00EC774D /* OnBoardingScreen.swift in Sources */,
 				5721C6352A2ADB050010108C /* SplashScreen.swift in Sources */,
+				57D3DE1A2A2CDCCA00EC774D /* ExplanationLessonScreen.swift in Sources */,
 				8C33A67E2A2CA3780000A067 /* MButton.swift in Sources */,
 				5721C6372A2AF0610010108C /* InputNameScreen.swift in Sources */,
+				57F3AECA2A2D6A3700E018DB /* MaterialScreen.swift in Sources */,
 				8C33A6812A2CA3C10000A067 /* DisclaimerView.swift in Sources */,
 				8C33A6822A2CA3C70000A067 /* CompleteLessonView.swift in Sources */,
 				572B07372A2C39A200E341A1 /* HomeScreen.swift in Sources */,
 				8C33A6842A2CA3D30000A067 /* BackgroundStoryView.swift in Sources */,
+				57D3DE1C2A2CDE5200EC774D /* DataExplanationLesson.swift in Sources */,
 				8C1BBCD52A26FDFE007090F3 /* ContentView.swift in Sources */,
 				8C33A6832A2CA3CF0000A067 /* IncompleteLessonView.swift in Sources */,
 				8C1BBCD32A26FDFE007090F3 /* Mingo_ITApp.swift in Sources */,

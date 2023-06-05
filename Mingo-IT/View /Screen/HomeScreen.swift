@@ -12,18 +12,73 @@ struct HomeScreen: View {
     @AppStorage("currentUser") var currentUsername : String?
     
     var body: some View {
-        VStack{
-            Image(systemName: "person.circle.fill")
-                .resizable()
-                .frame(width: 150 , height: 150)
-                .scaledToFit()
-            
-            Text(currentUsername ?? "Null")
-                .font(.title)
-            
-            MButton(text: "Sign Out", isFullWidth: true, background: Color("primaryBlue"))
+        NavigationStack {
+            VStack{
+                Image(systemName: "person.circle.fill")
+                    .resizable()
+                    .frame(width: 150 , height: 150)
+                    .scaledToFit()
+                
+                Text(currentUsername ?? "Null")
+                    .font(.title)
+                
+                HStack {
+                    NavigationLink(destination: {
+                        ExplanationLessonScreen(explanation: dataLesson[0])
+                    }, label: {
+                        Text("Programming")
+                            .padding()
+                            .background(Color("primaryBlue"))
+                            .foregroundColor(.white)
+
+                            .cornerRadius(10)
+                    })
+                       
+                    Spacer()
+                    NavigationLink(destination: {
+                        ExplanationLessonScreen(explanation: dataLesson[1])
+                    }, label: {
+                        Text("Logic")
+                            .padding()
+                            .background(Color("primaryBlue"))
+                            .foregroundColor(.white)
+
+                            .cornerRadius(10)
+                    })
+                }
+                .padding(.bottom, 20)
+              
+              
+                
+                HStack{
+                    NavigationLink(destination: {
+                        ExplanationLessonScreen(explanation: dataLesson[2])
+                    }, label: {
+                        Text("Matemathic")
+                            .padding()
+                            .background(Color("primaryBlue"))
+                            .foregroundColor(.white)
+
+                            .cornerRadius(10)
+                    })
+                    Spacer()
+                    NavigationLink(destination: {
+                        ExplanationLessonScreen(explanation: dataLesson[3])
+                    }, label: {
+                        Text("UI / UX design")
+                            .padding()
+                            .background(Color("primaryBlue"))
+                            .foregroundColor(.white)
+
+                            .cornerRadius(10)
+                    })
+                }
+                    
+                
+//                MButton(text: "Sign Out", isFullWidth: true, background: Color("primaryBlue"))
+            }
+            .padding(.horizontal, 24)
         }
-        .padding(.horizontal, 24)
     }
 }
 

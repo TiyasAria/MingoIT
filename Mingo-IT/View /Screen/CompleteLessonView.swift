@@ -39,7 +39,7 @@ struct CompleteLessonView: View {
             
             Spacer()
             
-            MButton(text: "Continue", isFullWidth: true, background: Color("primaryOrange"))
+//            MButton(text: "Continue", isFullWidth: true, background: Color("primaryOrange"))
         }
     }
 }
