@@ -19,7 +19,7 @@ struct SplashScreen: View {
                 if currentUserSignIn {
                     HomeScreen()
                 } else {
-                    OnBoardingScreen()
+                   DisclaimerView()
                 }
                
             } else {

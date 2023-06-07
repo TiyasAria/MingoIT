@@ -33,18 +33,26 @@ struct DisclaimerView: View {
                 }
                 Spacer()
                 
-                NavigationLink(destination: {
-                    InputNameScreen()
-                }, label: {
-                    MButton(text: "I Understand", isFullWidth: true,
-                            background: Color("primaryOrange")
-                    )
-                })
+//                NavigationLink(destination: {
+//                    InputNameScreen()
+//                }, label: {
+//                    MButton(text: "I Understand", isFullWidth: true,
+//                            background: Color("primaryOrange")
+//                    )
+//                })
                 
+                NavigationLink(destination: {
+                    InputNameScreen().navigationBarBackButtonHidden(true)
+                }, label: {
+                   ButtonComponent(title: "I Understand")
+                        .padding(.horizontal, 24)
+                })
                
                 
             }
+            
         }
+       
     }
 }
 

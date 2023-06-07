@@ -45,11 +45,17 @@ struct InputNameScreen: View {
                 NavigationLink(destination: {
                     BackgroundStoryView()
                 }, label: {
-                    MButton(text: "Next", isFullWidth: true, textColor: (currentUser.isEmpty) ? Color("textDisabled"):Color.white, background: (currentUser.isEmpty) ? Color("greyButtonDisabled") : Color("primaryOrange"))
-                        .disabled(currentUser.isEmpty)
+                    ButtonComponent(
+                        title: "Next",
+                        backgroundColor: (currentUser.isEmpty) ? Color("greyButtonDisabled") : Color("primaryOrange"),
+                        textColor: (currentUser.isEmpty) ? Color("textDisabled"): Color.white, shadowColor: (currentUser.isEmpty) ? Color("colorShadowGray") : Color("shadowColorButton")
+                    
+                    )
+                    .disabled(currentUser.isEmpty)
+                        .padding(.horizontal, 24)
                 })
             }
-        .padding(.vertical, 30)
+            .padding(.vertical, 30)
         }
     }
     
