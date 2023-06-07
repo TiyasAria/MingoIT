@@ -38,7 +38,6 @@ struct MButton: View {
     var text: String
     var width: CGFloat = 100.0
     var isFullWidth: Bool = false
-    var action: () -> () = {}
     var textColor: Color = .white
     var background: Color = .blue
     
@@ -52,7 +51,7 @@ struct MButton: View {
     var body: some View {
         Button() {
             isButtonPressed.toggle()
-            action()
+//            action()
         }label: {
             if isFullWidth {
                 Text("\(text)")

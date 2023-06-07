@@ -32,13 +32,11 @@ struct DisclaimerView: View {
                     Image("DisclaimerOwl")
                 }
                 Spacer()
+                
                 NavigationLink(destination: {
                     InputNameScreen()
                 }, label: {
                     MButton(text: "I Understand", isFullWidth: true,
-                            action: {
-                        
-                    },
                             background: Color("primaryOrange")
                     )
                 })

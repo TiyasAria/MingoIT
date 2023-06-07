@@ -47,19 +47,19 @@ struct ExplanationLessonScreen: View {
                     
                     MButton(text: "Next",
                             isFullWidth: true,
-                            action : {
-                        if currentIndex < explanation.description.count - 1 {
-                                         currentIndex = currentIndex + 1 
-                                           } else {
-                                              print("masuk")
-                                               NavigationLink {
-                                                   MaterialScreen()
-                                               } label: {
-                                                   
-                                               }
-
-                                           }
-                            },
+//                            action : {
+//                        if currentIndex < explanation.description.count - 1 {
+//                                         currentIndex = currentIndex + 1 
+//                                           } else {
+//                                              print("masuk")
+//                                               NavigationLink {
+//                                                   MaterialScreen()
+//                                               } label: {
+//                                                   
+//                                               }
+//
+//                                           }
+//                            },
                             background: Color("primaryOrange")
                     )
 
