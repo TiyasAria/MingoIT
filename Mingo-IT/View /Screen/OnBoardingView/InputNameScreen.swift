@@ -44,16 +44,23 @@ struct InputNameScreen: View {
                 
                 NavigationLink(destination: {
                     BackgroundStoryView()
+                        .navigationBarBackButtonHidden(true)
                 }, label: {
                     ButtonComponent(
-                        title: "Next",
+                        title: "Next", action: {
+                            signIn()
+                        },
                         backgroundColor: (currentUser.isEmpty) ? Color("greyButtonDisabled") : Color("primaryOrange"),
                         textColor: (currentUser.isEmpty) ? Color("textDisabled"): Color.white, shadowColor: (currentUser.isEmpty) ? Color("colorShadowGray") : Color("shadowColorButton")
                     
                     )
-                    .disabled(currentUser.isEmpty)
+//                    .onTapGesture {
+//                        signIn()
+//                    }
+                  
                         .padding(.horizontal, 24)
                 })
+                .disabled(currentUser.isEmpty)
             }
             .padding(.vertical, 30)
         }

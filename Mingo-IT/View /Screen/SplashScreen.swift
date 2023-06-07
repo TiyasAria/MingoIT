@@ -17,7 +17,7 @@ struct SplashScreen: View {
         ZStack{
             if self.isActive {
                 if currentUserSignIn {
-                    HomeScreen()
+                  HomeScreen()
                 } else {
                    DisclaimerView()
                 }

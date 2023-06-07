@@ -19,8 +19,9 @@ struct HomeScreen: View {
                     .frame(width: 150 , height: 150)
                     .scaledToFit()
                 
-                Text(currentUsername ?? "Null")
-                    .font(.title)
+                Text(currentUsername ?? "Ayu")
+                    .font(.headline)
+                    .foregroundColor(.black)
                 
                 HStack {
                     NavigationLink(destination: {

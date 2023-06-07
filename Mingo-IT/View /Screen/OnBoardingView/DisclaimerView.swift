@@ -44,8 +44,9 @@ struct DisclaimerView: View {
                 NavigationLink(destination: {
                     InputNameScreen().navigationBarBackButtonHidden(true)
                 }, label: {
-                   ButtonComponent(title: "I Understand")
-                        .padding(.horizontal, 24)
+                    ButtonComponent(title: "I Understand", action: {
+                        
+                    })                        .padding(.horizontal, 24)
                 })
                
                 
