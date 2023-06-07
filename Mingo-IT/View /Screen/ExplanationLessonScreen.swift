@@ -10,6 +10,7 @@ import SwiftUI
 struct ExplanationLessonScreen: View {
     let explanation : DataExplanationLesson
    
+    @State var currentIndex  = 0
     
     var body: some View {
         VStack() {
@@ -18,7 +19,7 @@ struct ExplanationLessonScreen: View {
             //                .frame(width: 200, height: 200)
             //                .foregroundColor(.black)
             
-            Image(explanation.image)
+            Image(explanation.image[currentIndex])
                 .padding(.vertical, 75)
             
             ZStack{
@@ -34,7 +35,7 @@ struct ExplanationLessonScreen: View {
                         .offset(y: 5)
                     Spacer()
 
-                    Text(explanation.description)
+                    Text(explanation.description[currentIndex])
                         .font(.custom("SFProRounded-Reguler", size: 20))
                         .padding(.horizontal,24)
 //                            .frame(width: 325)
@@ -47,9 +48,17 @@ struct ExplanationLessonScreen: View {
                     MButton(text: "Next",
                             isFullWidth: true,
                             action : {
-                        NavigationLink(destination: MaterialScreen()) {
-                            Text("")
-                        }
+                        if currentIndex < explanation.description.count - 1 {
+                                         currentIndex = currentIndex + 1 
+                                           } else {
+                                              print("masuk")
+                                               NavigationLink {
+                                                   MaterialScreen()
+                                               } label: {
+                                                   
+                                               }
+
+                                           }
                             },
                             background: Color("primaryOrange")
                     )
@@ -68,6 +77,8 @@ struct ExplanationLessonScreen: View {
         .ignoresSafeArea()
         
     }
+    
+    
     
     struct RoundedCorner: Shape {
         var radius: CGFloat = .infinity

@@ -42,7 +42,12 @@ struct InputNameScreen: View {
                 }
                 .padding(.horizontal , 24)
                 
-//                MButton(text: "Next", isFullWidth: true, textColor: (currentUser.isEmpty) ? Color("textDisabled"):Color.white, background: (currentUser.isEmpty) ? Color("greyButtonDisabled") : Color("primaryOrange"))
+                NavigationLink(destination: {
+                    BackgroundStoryView()
+                }, label: {
+                    MButton(text: "Next", isFullWidth: true, textColor: (currentUser.isEmpty) ? Color("textDisabled"):Color.white, background: (currentUser.isEmpty) ? Color("greyButtonDisabled") : Color("primaryOrange"))
+                        .disabled(currentUser.isEmpty)
+                })
             }
         .padding(.vertical, 30)
         }

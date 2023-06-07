@@ -35,7 +35,7 @@ struct BackgroundStoryView: View {
                         .foregroundColor(.white)
                     
                     
-//                    MButton(text: "Next", isFullWidth: true, background: Color("primaryOrange"))
+                    MButton(text: "Next", isFullWidth: true, background: Color("primaryOrange"))
                 }
             }
             .clipShape(RoundedCorner(radius: 30, corners: [.topLeft, .topRight]))

@@ -38,7 +38,7 @@ struct MButton: View {
     var text: String
     var width: CGFloat = 100.0
     var isFullWidth: Bool = false
-    var action: () -> Void
+    var action: () -> () = {}
     var textColor: Color = .white
     var background: Color = .blue
     
@@ -75,7 +75,7 @@ struct MButton: View {
         .tint(background)
         .padding(20)
         .buttonStyle(.borderedProminent)
-        .buttonBorderShape(.roundedRectangle(radius: 12))
+        .buttonBorderShape(.roundedRectangle(radius: 10))
         .scaleEffect(isButtonPressed ? 0.975 : 1)
         .offset(y: isButtonPressed ? 5 : 0)
         .animation(Animation.spring())
@@ -108,8 +108,6 @@ struct MButton: View {
 
 struct MButton_Previews: PreviewProvider {
     static var previews: some View {
-        MButton(text: "I am a button") {
-            
-        }
+        MButton(text: "I am a button") 
     }
 }

@@ -75,7 +75,12 @@ struct HomeScreen: View {
                 }
                     
                 
-//                MButton(text: "Sign Out", isFullWidth: true, background: Color("primaryBlue"))
+                MButton(text: "Sign Out", isFullWidth: true,
+                        action : {
+                    currentUsername = ""
+                    currentUserSignIn = false
+                },
+                        background: Color("primaryBlue"))
             }
             .padding(.horizontal, 24)
         }
