@@ -11,8 +11,9 @@ import SwiftUI
 struct InputNameScreen: View {
     
     @State var currentUser : String   = ""
-    @AppStorage("user_signin") var currentUserSignIn : Bool = false
-    @AppStorage("currentUser") var currentUsername : String?
+    @State private var inputName : Bool = false
+    @StateObject private var userManager = UserManager()
+    
     
     var body: some View {
         NavigationStack {
@@ -42,16 +43,33 @@ struct InputNameScreen: View {
                 }
                 .padding(.horizontal , 24)
                 
-                MButton(text: "Next", isFullWidth: true, textColor: (currentUser.isEmpty) ? Color("textDisabled"):Color.white, background: (currentUser.isEmpty) ? Color("greyButtonDisabled") : Color("primaryOrange"))
+                NavigationLink(isActive: $inputName, destination: {
+                    BackgroundStoryView()
+                        .navigationBarBackButtonHidden(true)
+                }, label: {
+                    ButtonComponent(
+                        title: "Next",
+                        backgroundColor: (currentUser.isEmpty) ? Color("greyButtonDisabled") : Color("primaryOrange"),
+                        textColor: (currentUser.isEmpty) ? Color("textDisabled"): Color.white, shadowColor: (currentUser.isEmpty) ? Color("colorShadowGray") : Color("shadowColorButton")
+                        
+                    )
+                    .onTapGesture {
+                        self.signIn()
+                        self.inputName = true
+                    }
+                    .padding(.horizontal, 24)
+                })
+                
+                .disabled(currentUser.isEmpty)
             }
-        .padding(.vertical, 30)
+            .padding(.vertical, 30)
         }
     }
     
     func signIn(){
-        currentUsername = currentUser
+        userManager.currentUsername = currentUser
         withAnimation(.spring()) {
-            currentUserSignIn = true
+            userManager.currentUserSignIn = true
         }
     }
 }

@@ -37,6 +37,8 @@ struct MButton: View {
     // MARK: Custom Params
     var text: String
     var width: CGFloat = 100.0
+    var action: () -> () = {}
+
     var isFullWidth: Bool = false
     var textColor: Color = .white
     var background: Color = .blue
@@ -71,7 +73,7 @@ struct MButton: View {
         .fontWeight(.bold)
         .foregroundColor(textColor)
         .background(
-            RoundedRectangle(cornerRadius: 18)
+            RoundedRectangle(cornerRadius: 10)
                 .shadow(color: .black,
                         radius: 0, x: 0, y: 4)
                 .opacity(0.25)
@@ -79,15 +81,40 @@ struct MButton: View {
         .tint(background)
         .padding(20)
         .buttonStyle(.borderedProminent)
-        .buttonBorderShape(.roundedRectangle(radius: 12))
+        .buttonBorderShape(.roundedRectangle(radius: 10))
         .scaleEffect(isButtonPressed ? 0.975 : 1)
         .offset(y: isButtonPressed ? 5 : 0)
         .animation(Animation.spring())
+
+        .gesture(
+            LongPressGesture(minimumDuration: 1.0)
+                .updating($isLongPressing) { currentState, gestureState, transaction in
+                    gestureState = currentState
+                    handleLongPressStateChange(gestureState: currentState)
+                }
+        )
+    }
+
+    private func handleLongPressStateChange(gestureState: Bool) {
+        if gestureState && !isButtonPressed {
+            longPressTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                withAnimation {
+                    isButtonPressed = true
+                }
+            }
+        } else {
+            longPressTimer?.invalidate()
+            longPressTimer = nil
+            withAnimation {
+                isButtonPressed = false
+            }
+        }
+
     }
 }
 
 struct MButton_Previews: PreviewProvider {
     static var previews: some View {
-        MButton(text: "I am a button")
+        MButton(text: "I am a button") 
     }
 }

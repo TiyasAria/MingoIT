@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeScreen: View {
+
     @State private var programmingProgress: Float = 0.5
     @State private var logicProgress: Float = 0.3
     @State private var mathProgress: Float = 0.4
@@ -34,6 +35,7 @@ struct HomeScreen: View {
             }
             .accentColor(Color.init(hex: "54AAB4"))
         }
+
 }
 
 struct HomeScreen_Previews: PreviewProvider {
