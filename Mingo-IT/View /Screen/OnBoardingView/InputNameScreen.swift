@@ -2,7 +2,7 @@
 //  InputNameScreen.swift
 //  Mingo-IT
 //
-//  Created by tiyas aria on 03/06/23.
+//  Created by tiyas aria on 09/06/23.
 //
 
 import SwiftUI
