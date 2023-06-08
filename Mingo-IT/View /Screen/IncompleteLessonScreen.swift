@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct IncompleteLessonView: View {
+struct IncompleteLessonScreen: View {
     var body: some View {
         VStack {
             Spacer()
@@ -49,6 +49,6 @@ struct IncompleteLessonView: View {
 
 struct IncompleteLessonView_Previews: PreviewProvider {
     static var previews: some View {
-        IncompleteLessonView()
+        IncompleteLessonScreen()
     }
 }
