@@ -14,6 +14,7 @@ struct LevelPageView: View {
     //     level untuk move imagenya
     @State var currentLevel = 0
     
+    
     var body: some View {
         NavigationStack {
             VStack(alignment: .center){
@@ -26,7 +27,7 @@ struct LevelPageView: View {
                         .font(.custom("SFProRounded-Bold", size: 32))
                     
                 }
-                .clipShape(RoundedCorner(radius: 30, corners: [.bottomLeft, .bottomRight]))
+                .clipShape(RoundedCornerItem(radius: 30, corners: [.bottomLeft, .bottomRight]))
                 
                 ZStack {
                     Image("awan")
@@ -36,22 +37,16 @@ struct LevelPageView: View {
                         
                         //            box info  mapel and value
                         if currentLevel == 0  {
-                            
-                            VStack(alignment: .leading, spacing: 10){
-                                ItemBox(title: "Programming", level:$point)
-                                ItemBox(title: "Logical Thingking", level:$point)
-                                ItemBox(title: "Mathematic", level:$point)
-                                ItemBox(title: "Design UI/UX", level:$point)
+                            withAnimation(.easeOut(duration: 1)){
+                               BoxEnable(point: $point)
                             }
-                            .frame(width: 240, height: 161)
-                            .padding()
-                            .background( Color("primaryBlue"))
-                            .cornerRadius(20)
-//                            .padding(.horizontal, 70)
+                            
                             
                         } else {
-                            itemBoxDisable()
-//                                .padding(.horizontal, 50)
+                            withAnimation(.easeIn(duration: 1)){
+                                itemBoxDisable()
+                            }
+                        
                         }
                         //            item gedung
                         ZStack {
@@ -70,13 +65,15 @@ struct LevelPageView: View {
                                 .frame(width : 82 , height: 100)
                                 .offset(y:130)
                         }
-                        //                                        .padding(.bottom, 15)
                         
                         //             button
                         HStack{
                             Image("left arrow")
                                 .onTapGesture {
-                                    currentLevel = currentLevel - 1
+                                    withAnimation(.easeOut(duration: 0.5)){
+                                        currentLevel = currentLevel - 1
+                                    }
+                                   
                                     
                                 }.disabled(currentLevel  == 0 )
                             
@@ -91,7 +88,9 @@ struct LevelPageView: View {
                             
                             Image("right arrow")
                                 .onTapGesture {
-                                    currentLevel = currentLevel + 1
+                                    withAnimation(.easeIn(duration: 0.5)){
+                                        currentLevel = currentLevel + 1                                    }
+                                  
                                 }
                                 .disabled(currentLevel  == 2 )
                             
@@ -122,7 +121,7 @@ struct LevelPageView_Previews: PreviewProvider {
 
 struct ItemBox: View {
     var title : String
-    @Binding var level : Int
+    @Binding var point : Int
     
     
     var body: some View {
@@ -135,7 +134,7 @@ struct ItemBox: View {
             
             Spacer()
             
-            Text("\(level)/5")
+            Text("\(point)/5")
                 .foregroundColor( Color("primaryBlue"))
                 .padding(.all, 5)
                 .background( .white )
@@ -185,5 +184,21 @@ struct contentBoxDisable : View {
                 .cornerRadius(5)
             
         }
+    }
+}
+
+struct BoxEnable: View {
+    @Binding var point : Int
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10){
+            ItemBox(title: "Programming", point:$point)
+            ItemBox(title: "Logical Thingking", point:$point)
+            ItemBox(title: "Mathematic", point:$point)
+            ItemBox(title: "Design UI/UX", point:$point)
+        }
+        .frame(width: 240, height: 161)
+        .padding()
+        .background( Color("primaryBlue"))
+        .cornerRadius(20)
     }
 }

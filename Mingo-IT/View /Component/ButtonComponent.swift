@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ButtonComponent: View {
     let title : String
-//    let action : () -> Void
+//    let action : () -> Void = {}
     var backgroundColor : Color = Color("primaryOrange")
     var textColor : Color = .white
     var shadowColor : Color = Color("shadowColorButton")

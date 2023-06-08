@@ -11,7 +11,7 @@ import SwiftUI
 struct InputNameScreen: View {
     
     @State var currentUser : String   = ""
-
+    @State private var inputName : Bool = false
     @StateObject private var userManager = UserManager()
     
     
@@ -43,7 +43,7 @@ struct InputNameScreen: View {
                 }
                 .padding(.horizontal , 24)
                 
-                NavigationLink(destination: {
+                NavigationLink(isActive: $inputName, destination: {
                     BackgroundStoryView()
                         .navigationBarBackButtonHidden(true)
                 }, label: {
@@ -51,16 +51,15 @@ struct InputNameScreen: View {
                         title: "Next",
                         backgroundColor: (currentUser.isEmpty) ? Color("greyButtonDisabled") : Color("primaryOrange"),
                         textColor: (currentUser.isEmpty) ? Color("textDisabled"): Color.white, shadowColor: (currentUser.isEmpty) ? Color("colorShadowGray") : Color("shadowColorButton")
-
+                        
                     )
-                    
-//                    .onTapGesture {
-//                        signIn()
-//                    }
-                    
-                    
-                        .padding(.horizontal, 24)
+                    .onTapGesture {
+                        self.signIn()
+                        self.inputName = true
+                    }
+                    .padding(.horizontal, 24)
                 })
+                
                 .disabled(currentUser.isEmpty)
             }
             .padding(.vertical, 30)

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct GatePageScreen: View {
+    
     var body: some View {
         NavigationStack {
             VStack{
@@ -65,6 +66,7 @@ struct GatePageScreen: View {
             }
             .padding(.horizontal, 24)
         }
+        .toolbar(.hidden, for: .tabBar)
     }
 }
 

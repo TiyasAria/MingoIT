@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DisclaimerView: View {
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -50,7 +51,7 @@ struct DisclaimerView: View {
                     ButtonComponent(title: "I Understand")                        .padding(.horizontal, 24)
                 })
                 
-//                NavigationLink(destination: <#T##View#>, isActive: <#T##Binding<Bool>#>, label: <#T##() -> View#>)
+              
                
                
                 
