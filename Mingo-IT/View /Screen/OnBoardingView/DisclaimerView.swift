@@ -36,18 +36,22 @@ struct DisclaimerView: View {
 //                NavigationLink(destination: {
 //                    InputNameScreen()
 //                }, label: {
-//                    MButton(text: "I Understand", isFullWidth: true,
+//                    MButton(text: "I Understand",
+//                            action: {
+//
+//                    }, isFullWidth: true,
 //                            background: Color("primaryOrange")
 //                    )
 //                })
                 
                 NavigationLink(destination: {
-                    InputNameScreen().navigationBarBackButtonHidden(true)
+                  InputNameScreen().navigationBarBackButtonHidden(true)
                 }, label: {
-                    ButtonComponent(title: "I Understand", action: {
-                        
-                    })                        .padding(.horizontal, 24)
+                    ButtonComponent(title: "I Understand")                        .padding(.horizontal, 24)
                 })
+                
+//                NavigationLink(destination: <#T##View#>, isActive: <#T##Binding<Bool>#>, label: <#T##() -> View#>)
+               
                
                 
             }

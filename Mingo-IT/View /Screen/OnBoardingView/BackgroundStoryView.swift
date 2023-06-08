@@ -39,11 +39,9 @@ struct BackgroundStoryView: View {
                        
     //                    MButton(text: "Next", isFullWidth: true, background: Color("primaryOrange"))
                         NavigationLink(destination: {
-                            HomeScreen().navigationBarBackButtonHidden(true)
+                         HomeScreen().navigationBarBackButtonHidden(true)
                         }, label: {
-                            ButtonComponent(title: "Next", action: {
-                                
-                            })
+                            ButtonComponent(title: "Next")
                                 .padding(.horizontal, 24)
                         })
                     }

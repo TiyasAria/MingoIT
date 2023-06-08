@@ -8,83 +8,33 @@
 import SwiftUI
 
 struct HomeScreen: View {
-    @AppStorage("user_signin") var currentUserSignIn : Bool = false
-    @AppStorage("currentUser") var currentUsername : String?
+
+    @State private var selectionTab : Tab = .play
+    enum Tab {
+       case play
+       case profile
+    }
+    
     
     var body: some View {
-        NavigationStack {
-            VStack{
-                Image(systemName: "person.circle.fill")
-                    .resizable()
-                    .frame(width: 150 , height: 150)
-                    .scaledToFit()
-                
-                Text(currentUsername ?? "Ayu")
-                    .font(.headline)
-                    .foregroundColor(.black)
-                
-                HStack {
-                    NavigationLink(destination: {
-                        ExplanationLessonScreen(explanation: dataLesson[0])
-                    }, label: {
-                        Text("Programming")
-                            .padding()
-                            .background(Color("primaryBlue"))
-                            .foregroundColor(.white)
-
-                            .cornerRadius(10)
-                    })
-                       
-                    Spacer()
-                    NavigationLink(destination: {
-                        ExplanationLessonScreen(explanation: dataLesson[1])
-                    }, label: {
-                        Text("Logic")
-                            .padding()
-                            .background(Color("primaryBlue"))
-                            .foregroundColor(.white)
-
-                            .cornerRadius(10)
-                    })
+        TabView(selection: $selectionTab) {
+            LevelPageView()
+                .tabItem {
+                    Label("Play", systemImage: "gamecontroller.fill")
+                  
                 }
-                .padding(.bottom, 20)
-              
-              
-                
-                HStack{
-                    NavigationLink(destination: {
-                        ExplanationLessonScreen(explanation: dataLesson[2])
-                    }, label: {
-                        Text("Matemathic")
-                            .padding()
-                            .background(Color("primaryBlue"))
-                            .foregroundColor(.white)
-
-                            .cornerRadius(10)
-                    })
-                    Spacer()
-                    NavigationLink(destination: {
-                        ExplanationLessonScreen(explanation: dataLesson[3])
-                    }, label: {
-                        Text("UI / UX design")
-                            .padding()
-                            .background(Color("primaryBlue"))
-                            .foregroundColor(.white)
-
-                            .cornerRadius(10)
-                    })
+                .tag(Tab.play)
+            
+            ProfilePageView()
+                .tabItem {
+                    Label("Profile", systemImage: "person.crop.circle.fill")
                 }
-                    
-                
-                MButton(text: "Sign Out", isFullWidth: true,
-//                        action : {
-//                    currentUsername = ""
-//                    currentUserSignIn = false
-//                },
-                        background: Color("primaryBlue"))
-            }
-            .padding(.horizontal, 24)
+                .tag(Tab.play)
         }
+       
+        .accentColor(Color("primaryBlue"))
+     
+        
     }
 }
 

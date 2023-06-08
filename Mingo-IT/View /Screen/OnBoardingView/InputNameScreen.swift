@@ -11,8 +11,9 @@ import SwiftUI
 struct InputNameScreen: View {
     
     @State var currentUser : String   = ""
-    @AppStorage("user_signin") var currentUserSignIn : Bool = false
-    @AppStorage("currentUser") var currentUsername : String?
+
+    @StateObject private var userManager = UserManager()
+    
     
     var body: some View {
         NavigationStack {
@@ -47,17 +48,17 @@ struct InputNameScreen: View {
                         .navigationBarBackButtonHidden(true)
                 }, label: {
                     ButtonComponent(
-                        title: "Next", action: {
-                            signIn()
-                        },
+                        title: "Next",
                         backgroundColor: (currentUser.isEmpty) ? Color("greyButtonDisabled") : Color("primaryOrange"),
                         textColor: (currentUser.isEmpty) ? Color("textDisabled"): Color.white, shadowColor: (currentUser.isEmpty) ? Color("colorShadowGray") : Color("shadowColorButton")
-                    
+
                     )
+                    
 //                    .onTapGesture {
 //                        signIn()
 //                    }
-                  
+                    
+                    
                         .padding(.horizontal, 24)
                 })
                 .disabled(currentUser.isEmpty)
@@ -67,9 +68,9 @@ struct InputNameScreen: View {
     }
     
     func signIn(){
-        currentUsername = currentUser
+        userManager.currentUsername = currentUser
         withAnimation(.spring()) {
-            currentUserSignIn = true
+            userManager.currentUserSignIn = true
         }
     }
 }

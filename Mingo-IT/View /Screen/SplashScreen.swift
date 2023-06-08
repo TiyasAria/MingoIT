@@ -10,17 +10,18 @@ import SwiftUI
 struct SplashScreen: View {
     
     @State var isActive : Bool = false
-    @AppStorage("user_signin") var currentUserSignIn : Bool = false
+    @StateObject private var userManager = UserManager()
 
-    
     var body: some View {
         ZStack{
             if self.isActive {
-                if currentUserSignIn {
-                  HomeScreen()
-                } else {
-                   DisclaimerView()
-                }
+//                if userManager.currentUserSignIn {
+//                  HomeScreen()
+//                } else {
+//                  OnBoardingScreen()
+//                }
+//                DisclaimerView()
+                DisclaimerView()
                
             } else {
                 Color("primaryBlue")

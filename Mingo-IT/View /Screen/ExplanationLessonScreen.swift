@@ -9,11 +9,12 @@ import SwiftUI
 
 struct ExplanationLessonScreen: View {
     let explanation : DataExplanationLesson
-   
+    
     @State var currentIndex  = 0
+    @State private var isShowingNextScreen = false
     
     var body: some View {
-        VStack() {
+        VStack{
             
             //            Image(systemName: "xmark")
             //                .frame(width: 200, height: 200)
@@ -27,70 +28,77 @@ struct ExplanationLessonScreen: View {
                 
                 VStack{
                     Spacer()
-
+                    
                     Text(explanation.title)
                         .font(.custom("SFProRounded-Bold", size: 24))
                         .padding(.horizontal,24)
                         .foregroundColor(.white)
                         .offset(y: 5)
                     Spacer()
-
+                    
                     Text(explanation.description[currentIndex])
                         .font(.custom("SFProRounded-Reguler", size: 20))
                         .padding(.horizontal,24)
-//                            .frame(width: 325)
+                    //                            .frame(width: 325)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
-                     
+                    
                     
                     Spacer()
                     
-                    MButton(text: "Next",
-                            isFullWidth: true,
-//                            action : {
-//                        if currentIndex < explanation.description.count - 1 {
-//                                         currentIndex = currentIndex + 1 
-//                                           } else {
-//                                              print("masuk")
-//                                               NavigationLink {
-//                                                   MaterialScreen()
-//                                               } label: {
-//                                                   
-//                                               }
-//
-//                                           }
-//                            },
-                            background: Color("primaryOrange")
-                    )
-
-                   
+                    ButtonComponent(title: "Next")
+                        .padding(.horizontal, 24)
+                        .onTapGesture {
+                            if currentIndex < explanation.description.count - 1 {
+                                currentIndex = currentIndex + 1
+                            } else {
+                                print("masuk")
+                                isShowingNextScreen = true
+                                
+                            }
+                        }
+                    
+                    //                    MButton(text: "Next",
+                    //                            isFullWidth: true,
+                    ////                            action : {
+                    ////                        if currentIndex < explanation.description.count - 1 {
+                    ////                                         currentIndex = currentIndex + 1
+                    ////                                           } else {
+                    ////                                              print("masuk")
+                    ////                                               NavigationLink {
+                    ////                                                   MaterialScreen()
+                    ////                                               } label: {
+                    ////
+                    ////                                               }
+                    ////
+                    ////                                           }
+                    ////                            },
+                    //                            background: Color("primaryOrange")
+                    //                    )
+                    
+                    
                     
                     Spacer()
-
+                    
                 }
-              
+                
             }
-            .clipShape(RoundedCorner(radius: 30, corners: [.topLeft, .topRight]))
+            .clipShape(
+                RoundedCorner(radius: 30, corners: [.topLeft,.topRight])
+            )
             
             
         }
         .ignoresSafeArea()
-        
-    }
-    
-    
-    
-    struct RoundedCorner: Shape {
-        var radius: CGFloat = .infinity
-        var corners: UIRectCorner = .allCorners
-        
-        func path(in rect: CGRect) -> Path {
-            let path = UIBezierPath(roundedRect: rect,
-                                    byRoundingCorners: corners,
-                                    cornerRadii: CGSize(width: radius, height: radius))
-            return Path(path.cgPath)
+        .fullScreenCover(isPresented: $isShowingNextScreen) {
+            MaterialScreen()
         }
+        
     }
+    
+    
+    
+    
     
     
     

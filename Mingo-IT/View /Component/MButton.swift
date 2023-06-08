@@ -45,13 +45,13 @@ struct MButton: View {
     // MARK: State
     @GestureState private var isPressing = false
     @GestureState private var isLongPressing = false
-//    @State private var isButtonPressed = false
+    @State private var isButtonPressed = false
     @State private var longPressTimer: Timer?
     @State private var loopCounter = 0
     
     var body: some View {
         Button() {
-//            isButtonPressed.toggle()
+            isButtonPressed.toggle()
             action()
         }label: {
             if isFullWidth {
@@ -76,33 +76,33 @@ struct MButton: View {
         .padding(20)
         .buttonStyle(.borderedProminent)
         .buttonBorderShape(.roundedRectangle(radius: 10))
-//        .scaleEffect(isButtonPressed ? 0.975 : 1)
-//        .offset(y: isButtonPressed ? 5 : 0)
+        .scaleEffect(isButtonPressed ? 0.975 : 1)
+        .offset(y: isButtonPressed ? 5 : 0)
         .animation(Animation.spring())
-//        .gesture(
-//            LongPressGesture(minimumDuration: 1.0)
-//                .updating($isLongPressing) { currentState, gestureState, transaction in
-//                    gestureState = currentState
-//                    handleLongPressStateChange(gestureState: currentState)
-//                }
-//        )
+        .gesture(
+            LongPressGesture(minimumDuration: 1.0)
+                .updating($isLongPressing) { currentState, gestureState, transaction in
+                    gestureState = currentState
+                    handleLongPressStateChange(gestureState: currentState)
+                }
+        )
     }
-//
-//    private func handleLongPressStateChange(gestureState: Bool) {
-//        if gestureState && !isButtonPressed {
-//            longPressTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-//                withAnimation {
-//                    isButtonPressed = true
-//                }
-//            }
-//        } else {
-//            longPressTimer?.invalidate()
-//            longPressTimer = nil
-//            withAnimation {
-//                isButtonPressed = false
-//            }
-//        }
-//    }
+
+    private func handleLongPressStateChange(gestureState: Bool) {
+        if gestureState && !isButtonPressed {
+            longPressTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+                withAnimation {
+                    isButtonPressed = true
+                }
+            }
+        } else {
+            longPressTimer?.invalidate()
+            longPressTimer = nil
+            withAnimation {
+                isButtonPressed = false
+            }
+        }
+    }
 
 }
 
