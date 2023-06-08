@@ -9,33 +9,33 @@ import SwiftUI
 
 struct HomeScreen: View {
 
-    @State private var selectionTab : Tab = .play
-    enum Tab {
-       case play
-       case profile
-    }
-    
+    @State private var programmingProgress: Float = 0.5
+    @State private var logicProgress: Float = 0.3
+    @State private var mathProgress: Float = 0.4
+    @State private var designProgress: Float = 0.1
+    @State private var selection = 2
     
     var body: some View {
-        TabView(selection: $selectionTab) {
-            LevelPageView()
-                .tabItem {
-                    Label("Play", systemImage: "gamecontroller.fill")
-                  
+            TabView(selection: $selection) {
+                Group{
+                    Text("You can put some view in here")
                 }
-                .tag(Tab.play)
-            
-            ProfilePageView()
                 .tabItem {
-                    Label("Profile", systemImage: "person.crop.circle.fill")
+                    Image(systemName: "gamecontroller.fill")
+                    Text("Play")
                 }
-                .tag(Tab.play)
+                .tag(1)
+
+                ProfileScreen(programmingProgress: $programmingProgress, logicProgress: $logicProgress, mathProgress: $mathProgress, designProgress: $designProgress)
+                .tabItem {
+                    Image(systemName: "person.crop.circle.fill")
+                    Text("Profile")
+                }
+                .tag(2)
+            }
+            .accentColor(Color.init(hex: "54AAB4"))
         }
-       
-        .accentColor(Color("primaryBlue"))
-     
-        
-    }
+
 }
 
 struct HomeScreen_Previews: PreviewProvider {

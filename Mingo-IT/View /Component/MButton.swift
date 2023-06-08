@@ -38,9 +38,11 @@ struct MButton: View {
     var text: String
     var width: CGFloat = 100.0
     var action: () -> () = {}
+
     var isFullWidth: Bool = false
     var textColor: Color = .white
     var background: Color = .blue
+    var action: () -> () = {}
     
     // MARK: State
     @GestureState private var isPressing = false
@@ -52,6 +54,10 @@ struct MButton: View {
     var body: some View {
         Button() {
             isButtonPressed.toggle()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                isButtonPressed = false
+            }
             action()
         }label: {
             if isFullWidth {
@@ -79,6 +85,7 @@ struct MButton: View {
         .scaleEffect(isButtonPressed ? 0.975 : 1)
         .offset(y: isButtonPressed ? 5 : 0)
         .animation(Animation.spring())
+
         .gesture(
             LongPressGesture(minimumDuration: 1.0)
                 .updating($isLongPressing) { currentState, gestureState, transaction in
@@ -102,8 +109,8 @@ struct MButton: View {
                 isButtonPressed = false
             }
         }
-    }
 
+    }
 }
 
 struct MButton_Previews: PreviewProvider {
