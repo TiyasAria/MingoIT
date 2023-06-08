@@ -50,7 +50,7 @@ struct BackgroundStory: View {
     }
 }
 
-struct BackgroundStoryView_Previews: PreviewProvider {
+struct BackgroundStory_Previews: PreviewProvider {
     static var previews: some View {
         BackgroundStory()
     }
