@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DisclaimerView: View {
+struct DisclaimerScreen: View {
     var body: some View {
         VStack {
             Spacer()
@@ -37,6 +37,6 @@ struct DisclaimerView: View {
 
 struct DisclaimerView_Previews: PreviewProvider {
     static var previews: some View {
-        DisclaimerView()
+        DisclaimerScreen()
     }
 }
