@@ -42,7 +42,7 @@ struct MButton: View {
     var isFullWidth: Bool = false
     var textColor: Color = .white
     var background: Color = .blue
-    var action: () -> () = {}
+//    var action: () -> () = {}
     
     // MARK: State
     @GestureState private var isPressing = false
@@ -115,6 +115,6 @@ struct MButton: View {
 
 struct MButton_Previews: PreviewProvider {
     static var previews: some View {
-        MButton(text: "I am a button") 
+        MButton(text: "I am a button")
     }
 }

@@ -20,9 +20,7 @@ struct SplashScreen: View {
 //                } else {
 //                  OnBoardingScreen()
 //                }
-//                DisclaimerView()
-                DisclaimerView()
-               
+                   DisclaimerView()
             } else {
                 Color("primaryBlue")
                     .ignoresSafeArea()

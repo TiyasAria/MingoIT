@@ -13,13 +13,11 @@ struct HomeScreen: View {
     @State private var logicProgress: Float = 0.3
     @State private var mathProgress: Float = 0.4
     @State private var designProgress: Float = 0.1
-    @State private var selection = 2
+    @State private var selection = 1
     
     var body: some View {
             TabView(selection: $selection) {
-                Group{
-                    Text("You can put some view in here")
-                }
+                LevelPageView()
                 .tabItem {
                     Image(systemName: "gamecontroller.fill")
                     Text("Play")

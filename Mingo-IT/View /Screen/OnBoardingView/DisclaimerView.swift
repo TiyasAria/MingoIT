@@ -2,13 +2,12 @@
 //  DisclaimerView.swift
 //  Mingo-IT
 //
-//  Created by Zai on 02/06/23.
+//  Created by tiyas aria on 09/06/23.
 //
 
 import SwiftUI
 
 struct DisclaimerView: View {
-
     var body: some View {
         NavigationStack {
             VStack {

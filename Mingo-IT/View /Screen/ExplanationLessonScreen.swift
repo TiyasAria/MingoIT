@@ -36,68 +36,67 @@ struct ExplanationLessonScreen: View {
     //                .font(.system(size: 100))
                 
                 Image(explanation.image[currentIndex])
+                    .resizable()
+                    .frame(height: 220)
+                    .scaledToFit()
                     .padding(.vertical, 75)
                    
-                
-                ZStack{
-                    Color("primaryBlue")
+                VStack{
+                    Spacer()
                     
-                    VStack{
-                        Spacer()
+                    Text(explanation.title)
+                        .font(.custom("SFProRounded-Bold", size: 24))
+                        .padding(.horizontal,24)
+                        .foregroundColor(.white)
+                        .offset(y: 5)
                         
-                        Text(explanation.title)
-                            .font(.custom("SFProRounded-Bold", size: 24))
-                            .padding(.horizontal,24)
-                            .foregroundColor(.white)
-                            .offset(y: 5)
-                            
 
-                        Spacer()
-                        
-                        Text(explanation.description[currentIndex])
-                            .font(.custom("SFProRounded-Reguler", size: 20))
-                            .padding(.horizontal,24)
-                        //                            .frame(width: 325)
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.white)
-                           
+                    Spacer()
+                    
+                    Text(explanation.description[currentIndex])
+                        .font(.custom("SFProRounded-Reguler", size: 20))
+                        .padding(.horizontal,24)
+                    //                            .frame(width: 325)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.white)
+                       
 
-                        
-                        
-                        Spacer()
-                        
-                        NavigationLink( isActive: $isShowingNextScreen, destination: {
-                            MaterialScreen()
-                        }, label: {
-                            ButtonComponent( title: currentIndex == explanation.description.count - 1  ? "I'm ready to learn" : "Next")
-                              
-                                .padding(.horizontal, 24)
-                                .onTapGesture {
-                                    withAnimation(.easeInOut(duration: 1)){
-                                        if currentIndex < explanation.description.count - 1 {
-                                            currentIndex = currentIndex + 1
-                                        } else {
-                                            print("masuk")
-                                            self.isShowingNextScreen = true
-                                           
-                                        }
+                    
+                    
+                    Spacer()
+                    
+                    NavigationLink( isActive: $isShowingNextScreen, destination: {
+                        LessonScreen()
+                    }, label: {
+                        ButtonComponent( title: currentIndex == explanation.description.count - 1  ? "I'm ready to learn" : "Next")
+                          
+                            .padding(.horizontal, 24)
+                            .onTapGesture {
+                                withAnimation(.easeInOut(duration: 1)){
+                                    if currentIndex < explanation.description.count - 1 {
+                                        currentIndex = currentIndex + 1
+                                    } else {
+                                        print("masuk")
+                                        self.isShowingNextScreen = true
+                                       
                                     }
-                            }
-                        })
-                        
-                        
-                        Spacer()
-                        
-                    }
+                                }
+                        }
+                    })
+                    
+                    
+                    Spacer()
                     
                 }
+                .frame(width: UIScreen.main.bounds.width, height: 395)
+                .background(Color("primaryBlue"))
                 .clipShape(
                     RoundedCornerItem(radius: 30, corners: [.topLeft,.topRight])
                 )
-                
+             
                 
             }
-            .padding(.top, 20)
+            .padding(.top, 60)
             .ignoresSafeArea()
     //        .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: buttonBack)
