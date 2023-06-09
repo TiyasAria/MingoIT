@@ -2,14 +2,15 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct DragAndDrop: View {
+    @Binding var userAnswer: [String]
+    
     @State var items: [String]
     @State var objectsReceived: [[String]] = Array(repeating: Array(repeating: "", count: 1), count: 10)
-
     
     var itemCount = 0
     
-    
-    init(items: [String]) {
+    init(userAnswer: Binding<[String]>, items: [String]) {
+        _userAnswer = userAnswer
         self.items = items
         
         itemCount = self.items.count
@@ -44,7 +45,7 @@ struct DragAndDrop: View {
                         }
                 }
             }
-            .onDrop(of: [.plainText], delegate: TextDropDelegatee(objects: $items))
+            .onDrop(of: [.plainText], delegate: TextDropDelegatee(objects: $items, objectsReceived: $objectsReceived, userAnswer: $userAnswer))
             
             VStack(spacing: -20) {
                 ForEach(0..<itemCount, id: \.self) { i in
@@ -56,7 +57,7 @@ struct DragAndDrop: View {
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Color("borderCard"), lineWidth: 2)
                                 )
-                                .onDrop(of: [.plainText], delegate: TextDropDelegate(objects: $objectsReceived[i]) )
+                                .onDrop(of: [.plainText], delegate: TextDropDelegate(objects: $objectsReceived[i],objectsReceived: $objectsReceived, userAnswer: $userAnswer))
                                 .padding(20)
                         }else {
                             RoundedRectangle(cornerRadius: 10)
@@ -82,7 +83,7 @@ struct DragAndDrop: View {
                             }
                         }
                     }
-                    .onDrop(of: [.plainText], delegate: TextDropDelegatee(objects: $items) )
+                    .onDrop(of: [.plainText], delegate: TextDropDelegatee(objects: $items, objectsReceived: $objectsReceived, userAnswer: $userAnswer))
                     .frame(height: 100)
                 }
             }
@@ -94,6 +95,8 @@ struct DragAndDrop: View {
 
 struct TextDropDelegate: DropDelegate {
     @Binding var objects: [String]
+    @Binding var objectsReceived: [[String]]
+    @Binding var userAnswer: [String]
     
     func performDrop(info: DropInfo) -> Bool {
         let items = info.itemProviders(for: [.plainText])
@@ -109,12 +112,22 @@ struct TextDropDelegate: DropDelegate {
             }
         }
         
+        userAnswer = [String]()
+        
+        for obj in objectsReceived {
+            userAnswer.append(obj[0])
+        }
+        
+        print(userAnswer.joined())
+        
         return true
     }
 }
 
 struct TextDropDelegatee: DropDelegate {
     @Binding var objects: [String]
+    @Binding var objectsReceived: [[String]]
+    @Binding var userAnswer: [String]
     
     func performDrop(info: DropInfo) -> Bool {
         let items = info.itemProviders(for: [.plainText])
@@ -133,13 +146,12 @@ struct TextDropDelegatee: DropDelegate {
             }
         }
         
+        userAnswer = [String]()
+        
+        for obj in objectsReceived {
+            userAnswer.append(obj[0])
+        }
+        
         return true
-    }
-}
-
-
-struct LessonScreenss_Previews: PreviewProvider {
-    static var previews: some View {
-        DragAndDrop(items: ["Pour the contents of glass C into glass B", "Pour the contents of glass A into glass C", "Pour the contents of glass B into glass A"])
     }
 }
