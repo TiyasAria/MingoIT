@@ -12,6 +12,8 @@ enum QuizType {
 }
 
 struct QuizCard: View {
+    @Binding var isPassed: Bool
+    
     @State private var isSelected = false
     @State private var isExplain = false
     @State private var isSubmitted = false
@@ -20,7 +22,7 @@ struct QuizCard: View {
     @State private var isTypeing = false
     @State private var userAnswer: String = ""
     @State private var isEditing:Bool = false
-
+    @State private var userAnswerDrag: [String] = [String]()
     
     var title: String?
     var question: [String]?
@@ -80,7 +82,7 @@ struct QuizCard: View {
                                 
                             case .drag:
                                 VStack {
-                                    DragAndDrop(items: ["Pour the contents of glass C into glass B", "Pour the contents of glass A into glass C", "Pour the contents of glass B into glass A"])
+                                    DragAndDrop(userAnswer: $userAnswerDrag, items: ["Pour the contents of glass C into glass B", "Pour the contents of glass A into glass C", "Pour the contents of glass B into glass A"])
                                 }
                                 .frame(maxWidth: .infinity, minHeight: 400)
                             }
@@ -115,12 +117,26 @@ struct QuizCard: View {
                             if !isExplain {
                                 isSelected = true
                                 
-                                if userAnswer != nil {
-                                    isSubmitted = true
+                                switch quizType {
+                                case .drag:
+                                    var userAnswerContainer: [String] = userAnswerDrag
+                                    userAnswerContainer.append(itemAnswers[itemAnswers.count - 1])
                                     
-                                    if quizType == .fillTheBlank {
-                                        answer = question![1]
-                                    }
+                                    answer = itemAnswers.joined()
+                                    userAnswer = userAnswerContainer.joined()
+                                    
+                                    print("kunci")
+                                    print(answer)
+                                    print("jawaban")
+                                    print(userAnswer)
+                                case .fillTheBlank:
+                                    answer = question![1]
+                                case .multipleChoice:
+                                    break
+                                }
+                                
+                                if userAnswer != "" {
+                                    isSubmitted = true
                                     
                                     if userAnswer.lowercased() == answer.lowercased() {
                                         isCorrect = true
@@ -129,6 +145,8 @@ struct QuizCard: View {
                                         isCorrect = false
                                         isInCorrect = true
                                     }
+                                    
+                                    isPassed = isCorrect
                                 }
                             }
                         }
@@ -147,16 +165,4 @@ struct QuizCard: View {
                 )
             }
         }
-}
-
-struct LessonScreens_Previews: PreviewProvider {
-    static var previews: some View {
-        QuizCard(
-            answer: "A sets of Instructions",
-            items: ["Pour the contents of glass C into glass B", "Pour the contents of glass A into glass C", "Pour the contents of glass B into glass A"],
-            itemAnswers: ["Pour the contents of glass B into glass A", "Pour the contents of glass C into glass B", "Pour the contents of glass A into glass C"],
-            explanation: "Algorithms are sets of instructions of what steps to take to complete a task or solve a problem.",
-            quizType: .drag
-        )
-    }
 }
