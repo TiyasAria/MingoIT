@@ -102,33 +102,36 @@ struct QuizCard: View {
                     }
                     
                     HStack(spacing: -25) {
-//                        MButton(text: "Explanation", textColor: isSubmitted ? .black : .gray, background: isSubmitted ? .white : Color("greyButtonDisabled")) {
-//                            if isSubmitted {
-//                                isExplain.toggle()
-//                            }
-//                        }
+                        MButton(
+                            text: "Explanation",
+                            textColor: isSubmitted ? .black : .gray,
+                            background: isSubmitted ? .white : Color("greyButtonDisabled")) {
+                            if isSubmitted {
+                                isExplain.toggle()
+                            }
+                        }
                         
-//                        MButton(text: "Submit", background: Color("primaryOrange")) {
-//                            if !isExplain {
-//                                isSelected = true
-//                                
-//                                if userAnswer != nil {
-//                                    isSubmitted = true
-//                                    
-//                                    if quizType == .fillTheBlank {
-//                                        answer = question![1]
-//                                    }
-//                                    
-//                                    if userAnswer.lowercased() == answer.lowercased() {
-//                                        isCorrect = true
-//                                        isInCorrect = false
-//                                    }else {
-//                                        isCorrect = false
-//                                        isInCorrect = true
-//                                    }
-//                                }
-//                            }
-//                        }
+                        MButton(text: "Submit", background: Color("primaryOrange")) {
+                            if !isExplain {
+                                isSelected = true
+                                
+                                if userAnswer != nil {
+                                    isSubmitted = true
+                                    
+                                    if quizType == .fillTheBlank {
+                                        answer = question![1]
+                                    }
+                                    
+                                    if userAnswer.lowercased() == answer.lowercased() {
+                                        isCorrect = true
+                                        isInCorrect = false
+                                    }else {
+                                        isCorrect = false
+                                        isInCorrect = true
+                                    }
+                                }
+                            }
+                        }
                     }
                     .offset(y: 20)
                 }

@@ -37,12 +37,11 @@ struct MButton: View {
     // MARK: Custom Params
     var text: String
     var width: CGFloat = 100.0
-    var action: () -> () = {}
 
     var isFullWidth: Bool = false
     var textColor: Color = .white
     var background: Color = .blue
-//    var action: () -> () = {}
+    var action: () -> () = {}
     
     // MARK: State
     @GestureState private var isPressing = false

@@ -16,7 +16,7 @@ struct LessonScreen: View {
                         .font(.custom("SFProRounded-SemiBold", size: 32))
                     
                     QuizCard(
-                        answer: "A sets of Instructions",
+//                        answer: "A sets of Instructions",
                         items: ["Pour the contents of glass C into glass B", "Pour the contents of glass A into glass C", "Pour the contents of glass B into glass A"],
                         itemAnswers: ["Pour the contents of glass B into glass A", "Pour the contents of glass C into glass B", "Pour the contents of glass A into glass C"],
                         explanation: "Algorithms are sets of instructions of what steps to take to complete a task or solve a problem.",
@@ -29,7 +29,7 @@ struct LessonScreen: View {
                             "logic",
                             "that describe how to perform a task."
                         ],
-                        answer: "A sets of Instructions",
+//                        answer: "A sets of Instructions",
                         explanation: "An algorithm is a set of step-by-step instruction  that describe how to perform a task. ",
                         quizType: .fillTheBlank
                     )
