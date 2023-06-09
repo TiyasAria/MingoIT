@@ -71,9 +71,7 @@ struct InputNameScreen: View {
     
     func signIn(){
         userManager.currentUsername = currentUser
-        withAnimation(.spring()) {
-            userManager.currentUserSignIn = true
-        }
+        
     }
 }
 

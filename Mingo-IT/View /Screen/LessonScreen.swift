@@ -21,17 +21,17 @@ struct LessonScreen: View {
     var body: some View {
         VStack {
             HStack{
-                NavigationLink(isActive: $backToGate, destination: {
-                    GatePageScreen()
-                }, label: {
-                    Image(systemName: "xmark")
-                                .font(.system(size: 24))
-                                .bold()
-                            .foregroundColor(Color("primaryBlue"))
-                            .onTapGesture {
-                                backToGate = true
-                            }
-                })
+//                NavigationLink(isActive: $backToGate, destination: {
+////                    GateView()
+//                }, label: {
+//                    Image(systemName: "xmark")
+//                                .font(.system(size: 24))
+//                                .bold()
+//                            .foregroundColor(Color("primaryBlue"))
+//                            .onTapGesture {
+//                                backToGate = true
+//                            }
+//                })
                 
                 ProgressView(value: progress)
                                .progressViewStyle(LinearProgressViewStyle())
@@ -88,7 +88,7 @@ struct LessonScreen: View {
             
             MButton(text: "Continue", isFullWidth: true, background: Color("primaryOrange"))
         }
-        .navigationBarBackButtonHidden(true)
+//        .navigationBarBackButtonHidden(true)
     }
 }
 

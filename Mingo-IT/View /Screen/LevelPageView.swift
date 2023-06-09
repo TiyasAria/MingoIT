@@ -80,7 +80,7 @@ struct LevelPageView: View {
                             
                             
                             NavigationLink(isActive : $isShowNextScreen ,destination: {
-                                GatePageScreen()
+                               GateView()
                             }, label: {
                                 MButton(text: "Play",
                                         isFullWidth: true, background: Color("primaryOrange"), action: {

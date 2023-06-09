@@ -28,7 +28,6 @@
 		57421EBB2A327672004B254B /* InputNameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57421EBA2A327672004B254B /* InputNameScreen.swift */; };
 		57421EBD2A3276D0004B254B /* BackgroundStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57421EBC2A3276D0004B254B /* BackgroundStoryView.swift */; };
 		57421EBF2A3278FE004B254B /* DisclaimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57421EBE2A3278FE004B254B /* DisclaimerView.swift */; };
-		57B632452A3075BA00DE7B04 /* ButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B632442A3075BA00DE7B04 /* ButtonComponent.swift */; };
 		57B632472A30A2B500DE7B04 /* Username.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B632462A30A2B500DE7B04 /* Username.swift */; };
 		57B632492A30AC0400DE7B04 /* LevelPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B632482A30AC0400DE7B04 /* LevelPageView.swift */; };
 		57B6324D2A30B0E300DE7B04 /* RoundedCornerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6324C2A30B0E300DE7B04 /* RoundedCornerItem.swift */; };
@@ -46,7 +45,6 @@
 		8C33A6802A2CA38E0000A067 /* Extentsions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C33A67F2A2CA38E0000A067 /* Extentsions.swift */; };
 		8C33A6822A2CA3C70000A067 /* CompleteLessonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3E96E22A2C33C3006B13B4 /* CompleteLessonScreen.swift */; };
 		8C33A6832A2CA3CF0000A067 /* IncompleteLessonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3E96E42A2C378E006B13B4 /* IncompleteLessonScreen.swift */; };
-		8C33A6842A2CA3D30000A067 /* BackgroundStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3E96E62A2C3943006B13B4 /* BackgroundStory.swift */; };
 		8C54016D2A2D874500AF5603 /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C54016C2A2D874500AF5603 /* ProfileScreen.swift */; };
 		8C54016F2A2D891B00AF5603 /* RoundCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C54016E2A2D891B00AF5603 /* RoundCorner.swift */; };
 		8C5401732A2D97BD00AF5603 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5401722A2D97BD00AF5603 /* ProgressBar.swift */; };
@@ -77,7 +75,6 @@
 		57421EBA2A327672004B254B /* InputNameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputNameScreen.swift; sourceTree = "<group>"; };
 		57421EBC2A3276D0004B254B /* BackgroundStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundStoryView.swift; sourceTree = "<group>"; };
 		57421EBE2A3278FE004B254B /* DisclaimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerView.swift; sourceTree = "<group>"; };
-		57B632442A3075BA00DE7B04 /* ButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonComponent.swift; sourceTree = "<group>"; };
 		57B632462A30A2B500DE7B04 /* Username.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Username.swift; sourceTree = "<group>"; };
 		57B632482A30AC0400DE7B04 /* LevelPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelPageView.swift; sourceTree = "<group>"; };
 		57B6324C2A30B0E300DE7B04 /* RoundedCornerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerItem.swift; sourceTree = "<group>"; };
@@ -96,7 +93,6 @@
 		8C33A67F2A2CA38E0000A067 /* Extentsions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extentsions.swift; sourceTree = "<group>"; };
 		8C3E96E22A2C33C3006B13B4 /* CompleteLessonScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteLessonScreen.swift; sourceTree = "<group>"; };
 		8C3E96E42A2C378E006B13B4 /* IncompleteLessonScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncompleteLessonScreen.swift; sourceTree = "<group>"; };
-		8C3E96E62A2C3943006B13B4 /* BackgroundStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundStory.swift; sourceTree = "<group>"; };
 		8C54016C2A2D874500AF5603 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
 		8C54016E2A2D891B00AF5603 /* RoundCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCorner.swift; sourceTree = "<group>"; };
 		8C5401722A2D97BD00AF5603 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
@@ -143,9 +139,7 @@
 		5721C61C2A2ACD800010108C /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				8C3E96E62A2C3943006B13B4 /* BackgroundStory.swift */,
 				8C33A67D2A2CA3780000A067 /* MButton.swift */,
-				57B632442A3075BA00DE7B04 /* ButtonComponent.swift */,
 				57B6324C2A30B0E300DE7B04 /* RoundedCornerItem.swift */,
 				8C54016E2A2D891B00AF5603 /* RoundCorner.swift */,
 				8C5401722A2D97BD00AF5603 /* ProgressBar.swift */,
@@ -332,7 +326,6 @@
 				57D3DE1A2A2CDCCA00EC774D /* ExplanationLessonScreen.swift in Sources */,
 				8C33A67E2A2CA3780000A067 /* MButton.swift in Sources */,
 				57B6324D2A30B0E300DE7B04 /* RoundedCornerItem.swift in Sources */,
-				57B632452A3075BA00DE7B04 /* ButtonComponent.swift in Sources */,
 				05DF575F2A3330E200D3907C /* LogicView.swift in Sources */,
 				57B632472A30A2B500DE7B04 /* Username.swift in Sources */,
 				57421EBF2A3278FE004B254B /* DisclaimerView.swift in Sources */,
@@ -341,7 +334,6 @@
 				57B6324F2A30F77000DE7B04 /* GatePageScreen.swift in Sources */,
 				05DF57612A3330E200D3907C /* UIUXView.swift in Sources */,
 				572B07372A2C39A200E341A1 /* HomeScreen.swift in Sources */,
-				8C33A6842A2CA3D30000A067 /* BackgroundStory.swift in Sources */,
 				57D3DE1C2A2CDE5200EC774D /* DataExplanationLesson.swift in Sources */,
 				8C20253C2A317F79004764CB /* LessonScreen.swift in Sources */,
 				05DF57622A3330E200D3907C /* GateView.swift in Sources */,
@@ -355,7 +347,6 @@
 				57421EBD2A3276D0004B254B /* BackgroundStoryView.swift in Sources */,
 				05DF57632A3330E200D3907C /* Level2View.swift in Sources */,
 				572B07372A2C39A200E341A1 /* HomeScreen.swift in Sources */,
-				8C33A6842A2CA3D30000A067 /* BackgroundStory.swift in Sources */,
 				8C5840432A2F7A0800A0BD19 /* QuizCard.swift in Sources */,
 				8C5840452A2F7C1000A0BD19 /* RadioButtonGroup.swift in Sources */,
 				8C54016D2A2D874500AF5603 /* ProfileScreen.swift in Sources */,

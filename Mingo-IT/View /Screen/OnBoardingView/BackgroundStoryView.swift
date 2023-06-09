@@ -70,8 +70,10 @@ struct BackgroundStoryView: View {
                                     currentIndex = currentIndex + 1
                                 } else {
                                     print("masuk")
-                                    self.isShowingNextScreen = true
-                                    
+                                    withAnimation(.spring()) {
+                                        self.isShowingNextScreen = true
+                                        userManager.currentUserSignIn = true
+                                    }
                                 }
                             }
                         }

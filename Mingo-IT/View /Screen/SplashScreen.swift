@@ -15,12 +15,11 @@ struct SplashScreen: View {
     var body: some View {
         ZStack{
             if self.isActive {
-//                if userManager.currentUserSignIn {
-//                  HomeScreen()
-//                } else {
-//                  OnBoardingScreen()
-//                }
-                   DisclaimerView()
+                if userManager.currentUserSignIn {
+                  HomeScreen()
+                } else {
+                  DisclaimerView()
+                }
             } else {
                 Color("primaryBlue")
                     .ignoresSafeArea()
@@ -37,7 +36,7 @@ struct SplashScreen: View {
             }
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.isActive = true
             }
         }

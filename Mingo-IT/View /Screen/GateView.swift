@@ -16,11 +16,24 @@ struct GateView: View {
     @State private var showCoachMark = true
     @State private var isFinished = false
     
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+
+    
     @AppStorage("no_coachmark") var no_coachmark = false
+    @StateObject private var isFirstLaunch = UserManager()
+    
+    @ViewBuilder
+    func chooseDestination(index : Int) -> some View  {
+        if isFirstLaunch.isFirstLaunch {
+            ExplanationLessonScreen(explanation: dataLesson[index])
+        } else {
+            LessonScreen()
+        }
+    }
     
     var body: some View {
         
-        NavigationView{
+        NavigationStack{
             ZStack{
                 Image("groundGate")
                     .resizable()
@@ -82,7 +95,7 @@ struct GateView: View {
                 .padding(.bottom, 100)
                 .background(
                     NavigationLink(
-                        destination: LogicView(),
+                        destination:  chooseDestination(index: 1),
                         isActive: $shouldNavigateToLogicView,
                         label: { EmptyView() }
                     )
@@ -90,7 +103,7 @@ struct GateView: View {
                 )
                 .background(
                     NavigationLink(
-                        destination: UIUXView(),
+                        destination:  chooseDestination(index: 3),
                         isActive: $shouldNavigateToUIUXView,
                         label: { EmptyView() }
                     )
@@ -98,7 +111,7 @@ struct GateView: View {
                 )
                 .background(
                     NavigationLink(
-                        destination: ProgrammingView(),
+                        destination:  chooseDestination(index: 0),
                         isActive: $shouldNavigateToProgrammingView,
                         label: { EmptyView() }
                     )
@@ -106,7 +119,7 @@ struct GateView: View {
                 )
                 .background(
                     NavigationLink(
-                        destination: MathematicsView(),
+                        destination:  chooseDestination(index: 2),
                         isActive: $shouldNavigateToMathematicsView,
                         label: { EmptyView() }
                     )
@@ -137,13 +150,48 @@ struct GateView: View {
                 if showCoachMark {
                     CoachMark(isFinished: $isFinished).opacity(no_coachmark ? 0 : 1).animation(.easeInOut)
                 }
+                
+//                if isFirstLaunch.isFirstLaunch {
+//                    NavigationLink(
+//                        destination:  ExplanationLessonScreen(explanation: dataLesson[0]),
+//                        isActive: $shouldNavigateToMathematicsView,
+//                        label: { EmptyView() }
+//                    )
+//                } else {
+//                    NavigationLink(
+//                        destination:  LessonScreen(),
+//                        isActive: $shouldNavigateToMathematicsView,
+//                        label: { EmptyView() }
+//                    )
+//                }
+                
             }
+            .navigationBarBackButtonHidden(true)
+            .toolbar(.hidden, for: .tabBar)
+            .navigationBarItems(leading: Button(
+                action : {
+                            self.mode.wrappedValue.dismiss()
+                        }){
+//                            if showCoachMark{
+//                               EmptyView()
+//                            } else{
+//                                Image("back")
+//                            }
+                            Image("back")
+                            
+                            
+                                
+                        })
+
         }
+        
+        
 
     }
     
     private func buildingButton(action: @escaping () -> Void, text: String) -> some View {
         let buildingImage = Image("learningBuilding")
+      
         
         return Button(action: action) {
             VStack {

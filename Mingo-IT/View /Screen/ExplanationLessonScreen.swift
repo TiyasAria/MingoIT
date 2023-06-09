@@ -12,7 +12,8 @@ struct ExplanationLessonScreen: View {
     
     @State var currentIndex  = 0
     @State private var isShowingNextScreen = false
-    
+    @StateObject private var isFirstLaunchScreen = UserManager()
+
 
     
     var body: some View {
@@ -57,6 +58,7 @@ struct ExplanationLessonScreen: View {
                                     print("masuk")
                                     self.isShowingNextScreen = true
                                     
+                                    isFirstLaunchScreen.isFirstLaunch.toggle()
                                 }
                             }
                         }

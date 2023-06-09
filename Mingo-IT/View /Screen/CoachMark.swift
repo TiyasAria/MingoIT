@@ -102,6 +102,7 @@ struct CoachMark: View {
                 isFinished = false
             }
         }
+        
     }
     
     private func buildingView(text: String, progress: CGFloat) -> some View {
