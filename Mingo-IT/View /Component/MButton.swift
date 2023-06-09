@@ -61,10 +61,12 @@ struct MButton: View {
         }label: {
             if isFullWidth {
                 Text("\(text)")
+                    .font(.custom("SFProRounded-Medium", size: 16))
                     .frame(maxWidth: .infinity)
                     .padding(10)
             }else {
                 Text("\(text)")
+                    .font(.custom("SFProRounded-Medium", size: 16))
                     .frame(width: width)
                     .padding(10)
             }

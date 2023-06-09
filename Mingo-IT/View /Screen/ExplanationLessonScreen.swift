@@ -9,98 +9,78 @@ import SwiftUI
 
 struct ExplanationLessonScreen: View {
     let explanation : DataExplanationLesson
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    
     @State var currentIndex  = 0
     @State private var isShowingNextScreen = false
     
-    var buttonBack : some View {
-        Button {
-            self.presentationMode.wrappedValue.dismiss()
-        } label: {
-            Image(systemName: "custom.xmark")
-                .foregroundColor(Color("primaryBlue"))
-                .font(.system(size: 100))
-        }
-
-    }
 
     
     var body: some View {
         NavigationStack {
             VStack{
                 
-             buttonBack
-    //            Image(systemName: "custom.xmark")
-    //                .foregroundColor(Color("primaryBlue"))
-    //                .font(.system(size: 100))
-                
                 Image(explanation.image[currentIndex])
                     .resizable()
-                    .frame(height: 220)
                     .scaledToFit()
-                    .padding(.vertical, 75)
-                   
+                    .frame(width: 300, height: 300 )
+                    .padding(.vertical, 20)
+                
                 VStack{
-                    Spacer()
                     
                     Text(explanation.title)
+                        .frame(height: 30)
                         .font(.custom("SFProRounded-Bold", size: 24))
-                        .padding(.horizontal,24)
+                        .padding(10)
                         .foregroundColor(.white)
-                        .offset(y: 5)
-                        
-
-                    Spacer()
+                        .offset(y: 20)
+                        .padding(.bottom, 10)
+                    
+                   
                     
                     Text(explanation.description[currentIndex])
                         .font(.custom("SFProRounded-Reguler", size: 20))
                         .padding(.horizontal,24)
-                    //                            .frame(width: 325)
+                        .padding(.bottom, 30)
+                        .frame(height: 250)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
-                       
-
-                    
-                    
-                    Spacer()
                     
                     NavigationLink( isActive: $isShowingNextScreen, destination: {
                         LessonScreen()
                     }, label: {
-                        ButtonComponent( title: currentIndex == explanation.description.count - 1  ? "I'm ready to learn" : "Next")
-                          
-                            .padding(.horizontal, 24)
-                            .onTapGesture {
-                                withAnimation(.easeInOut(duration: 1)){
-                                    if currentIndex < explanation.description.count - 1 {
-                                        currentIndex = currentIndex + 1
-                                    } else {
-                                        print("masuk")
-                                        self.isShowingNextScreen = true
-                                       
-                                    }
+                        MButton(text: currentIndex == explanation.description.count - 1  ? "I’m Ready to Learn!" : "Next",
+                                isFullWidth: true, background: Color("primaryOrange"), action: {
+                            withAnimation(.easeInOut(duration: 1)){
+                                if currentIndex < explanation.description.count - 1 {
+                                    currentIndex = currentIndex + 1
+                                } else {
+                                    print("masuk")
+                                    self.isShowingNextScreen = true
+                                    
                                 }
+                            }
                         }
+                        )
                     })
+                    .padding(.bottom, 20)
+
                     
                     
-                    Spacer()
                     
                 }
-                .frame(width: UIScreen.main.bounds.width, height: 395)
+              
                 .background(Color("primaryBlue"))
                 .clipShape(
                     RoundedCornerItem(radius: 30, corners: [.topLeft,.topRight])
                 )
-             
+                
                 
             }
-            .padding(.top, 60)
+            .offset(y:60)
             .ignoresSafeArea()
-    //        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: buttonBack)
+            .navigationBarBackButtonHidden(true)
         }
+        
         
     }
     
