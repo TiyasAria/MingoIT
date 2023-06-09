@@ -11,8 +11,9 @@ import SwiftUI
 struct InputNameScreen: View {
     
     @State var currentUser : String   = ""
-    @State private var inputName : Bool = false
+    @State private var isShowingNextScreen : Bool = false
     @StateObject private var userManager = UserManager()
+    
     
     
     var body: some View {
@@ -42,25 +43,27 @@ struct InputNameScreen: View {
                     Spacer()
                 }
                 .padding(.horizontal , 24)
+  
                 
-                NavigationLink(isActive: $inputName, destination: {
-                    BackgroundStoryView()
-                        .navigationBarBackButtonHidden(true)
-                }, label: {
-                    ButtonComponent(
-                        title: "Next",
-                        backgroundColor: (currentUser.isEmpty) ? Color("greyButtonDisabled") : Color("primaryOrange"),
-                        textColor: (currentUser.isEmpty) ? Color("textDisabled"): Color.white, shadowColor: (currentUser.isEmpty) ? Color("colorShadowGray") : Color("shadowColorButton")
-                        
+                NavigationLink(isActive: $isShowingNextScreen) {
+                    BackgroundStoryView().navigationBarBackButtonHidden(true)
+                } label: {
+                    MButton(text: "Next",
+                            isFullWidth: true,
+                            textColor :(currentUser.isEmpty) ? Color("textDisabled") : Color(.white),
+                            background: (currentUser.isEmpty) ? Color("greyButtonDisabled") : Color("primaryOrange"),
+                            action: {
+                        isShowingNextScreen = true
+                        signIn()
+                            }
+                            
                     )
-                    .onTapGesture {
-                        self.signIn()
-                        self.inputName = true
-                    }
-                    .padding(.horizontal, 24)
-                })
-                
+                 
+                }
                 .disabled(currentUser.isEmpty)
+
+                
+                
             }
             .padding(.vertical, 30)
         }

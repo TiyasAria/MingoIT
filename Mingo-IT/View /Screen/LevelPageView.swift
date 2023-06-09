@@ -13,6 +13,8 @@ struct LevelPageView: View {
     var listImageLevel = ["Level1", "Level2Gray", "Level3Gray"]
     //     level untuk move imagenya
     @State var currentLevel = 0
+    @State private  var isShowNextScreen = false
+    
     
     
     var body: some View {
@@ -31,7 +33,7 @@ struct LevelPageView: View {
                 
                 ZStack {
                     Image("awan")
-                        .offset(x: 0, y: -80 )
+                        .offset(x: 0, y: -100 )
                     
                     VStack{
                         
@@ -74,14 +76,17 @@ struct LevelPageView: View {
                                         currentLevel = currentLevel - 1
                                     }
                                    
-                                    
                                 }.disabled(currentLevel  == 0 )
                             
                             
-                            NavigationLink(destination: {
+                            NavigationLink(isActive : $isShowNextScreen ,destination: {
                                 GatePageScreen()
                             }, label: {
-                                ButtonComponent(title: "Play")
+                                MButton(text: "Play",
+                                        isFullWidth: true, background: Color("primaryOrange"), action: {
+                                    isShowNextScreen = true
+                                }
+                                )
                             })
                             .disabled(currentLevel > 0)
                             
@@ -96,7 +101,7 @@ struct LevelPageView: View {
                             
                             
                         }
-                        .offset(y:90)
+                        .offset(y:70)
                         .padding(.horizontal, 25)
                         
                         

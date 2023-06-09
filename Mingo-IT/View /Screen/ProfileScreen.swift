@@ -9,13 +9,14 @@ import SwiftUI
 
 struct ProfileScreen: View {
     @StateObject private var userManager = UserManager()
+    
 
     @Binding var programmingProgress: Float
     @Binding var logicProgress: Float
     @Binding var mathProgress: Float
     @Binding var designProgress: Float
     @State private var isEditingName = false
-    @State private var name = "Harry Spotter"
+    @State private var name = ""
     @FocusState private var isEdit: Bool
     
     var body: some View {
@@ -39,7 +40,7 @@ struct ProfileScreen: View {
                 VStack(alignment: .leading) {
                     HStack {
                         if isEditingName {
-                            TextField("", text: $name)
+                            TextField("", text: $name )
                                 .focused($isEdit)
                         }else {
                             Text(userManager.currentUsername ?? "Ayu")
@@ -48,6 +49,7 @@ struct ProfileScreen: View {
                             .onTapGesture {
                                 isEditingName.toggle()
                                 isEdit = true
+                                userManager.currentUsername = name
                             }
                     }
                     .font(.headline)
@@ -58,6 +60,14 @@ struct ProfileScreen: View {
             }
             .padding(25)
             
+            Button {
+                userManager.currentUsername = ""
+                userManager.currentUserSignIn = false
+            } label: {
+                Text("Sign Out")
+                    .font(.body)
+            }
+
             Text("Level 1")
                 .frame(width: 310)
                 .padding(17)
@@ -136,6 +146,8 @@ struct ProfileScreen: View {
             .offset(y: -25)
             
             Spacer()
+            
+           
         }
         .background(.white)
         .ignoresSafeArea()

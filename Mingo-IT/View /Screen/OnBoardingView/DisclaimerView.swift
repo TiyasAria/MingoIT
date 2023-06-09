@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct DisclaimerView: View {
+    @State var isShowingNextScreen  : Bool = false
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -33,31 +35,20 @@ struct DisclaimerView: View {
                 }
                 Spacer()
                 
-//                NavigationLink(destination: {
-//                    InputNameScreen()
-//                }, label: {
-//                    MButton(text: "I Understand",
-//                            action: {
-//
-//                    }, isFullWidth: true,
-//                            background: Color("primaryOrange")
-//                    )
-//                })
-                
-                NavigationLink(destination: {
-                  InputNameScreen().navigationBarBackButtonHidden(true)
-                }, label: {
-                    ButtonComponent(title: "I Understand")                        .padding(.horizontal, 24)
-                })
-                
-              
-               
-               
-                
+                NavigationLink( isActive : $isShowingNextScreen,destination: {
+                                    InputNameScreen()
+                                }, label: {
+                                    MButton(text: "I Understand",
+                                            isFullWidth: true, background: Color("primaryOrange"), action: {
+                                        isShowingNextScreen = true
+                                    }
+                                    )
+                                })
+                                
             }
             
         }
-       
+        
     }
 }
 

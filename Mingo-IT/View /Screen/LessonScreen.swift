@@ -8,9 +8,32 @@
 import SwiftUI
 
 struct LessonScreen: View {
+    @State private var progress: Float = 0.5
+    @State private var backToGate = false
+
     var body: some View {
         VStack {
+            HStack{
+                NavigationLink(isActive: $backToGate, destination: {
+                    GatePageScreen()
+                }, label: {
+                    Image(systemName: "xmark")
+                                .font(.system(size: 24))
+                                .bold()
+                            .foregroundColor(Color("primaryBlue"))
+                            .onTapGesture {
+                                backToGate = true
+                            }
+                })
+                
+                ProgressView(value: progress)
+                               .progressViewStyle(LinearProgressViewStyle())
+                               .accentColor(Color("primaryBlue"))
+                              
+            }
+            .padding(.horizontal,24)
             ScrollView {
+               
                 VStack(alignment: .leading, spacing: 25) {
                     Text("Basic Algorithm")
                         .font(.custom("SFProRounded-SemiBold", size: 32))
@@ -65,6 +88,7 @@ struct LessonScreen: View {
             
             MButton(text: "Continue", isFullWidth: true, background: Color("primaryOrange"))
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
