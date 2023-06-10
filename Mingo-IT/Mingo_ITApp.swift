@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct Mingo_ITApp: App {
+    
     var body: some Scene {
         WindowGroup {
-         GateView()
+         HomeScreen()
         }
     }
 }

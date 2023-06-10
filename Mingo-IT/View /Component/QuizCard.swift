@@ -13,7 +13,7 @@ enum QuizType {
 
 struct QuizCard: View {
     @Binding var isPassed: Bool
-    
+    var score = 0
     @State private var isSelected = false
     @State private var isExplain = false
     @State private var isSubmitted = false
@@ -23,6 +23,10 @@ struct QuizCard: View {
     @State private var userAnswer: String = ""
     @State private var isEditing:Bool = false
     @State private var userAnswerDrag: [String] = [String]()
+    @AppStorage("result") var result : Bool = false
+
+    @StateObject private var userScore = ScoreManager()
+   
     
     var title: String?
     var question: [String]?
@@ -57,6 +61,7 @@ struct QuizCard: View {
                             case .multipleChoice:
                                 RadioButtonGroup(isTrue: $isCorrect, isSelected: $isSelected, items: items, selectedId: "") { selected in
                                     userAnswer = selected
+                                    
                                 }
                                 
                             case .fillTheBlank:
@@ -91,6 +96,7 @@ struct QuizCard: View {
                     
                     if !isExplain {
                         if isCorrect {
+                            
                             Text("Good Job! 🥳")
                                 .font(.headline)
                                 .offset(y: 20)
@@ -116,7 +122,6 @@ struct QuizCard: View {
                         MButton(text: "Submit", background: Color("primaryOrange")) {
                             if !isExplain {
                                 isSelected = true
-                                
                                 switch quizType {
                                 case .drag:
                                     var userAnswerContainer: [String] = userAnswerDrag
@@ -146,10 +151,20 @@ struct QuizCard: View {
                                         isInCorrect = true
                                     }
                                     
+                                    
                                     isPassed = isCorrect
+                                   
+
                                 }
+//                                 update score 
+                                if isCorrect == true {
+                                    userScore.updateScore()
+                                }
+                                
                             }
-                        }
+//                             aku buat disable karena ketika dia sudah menjawab entah benar atau salah , dia
+//                        tdk bisa menjawab lagi , tapi bisa buka explanation . ini mempengaruhi di scorenya dan tampilan complete dan incomplete screen .
+                        }.disabled(isSubmitted)
                     }
                     .offset(y: 20)
                 }

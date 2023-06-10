@@ -21,13 +21,25 @@ struct GateView: View {
     
     @AppStorage("no_coachmark") var no_coachmark = false
     @StateObject private var isFirstLaunch = UserManager()
+    @State private var selectedTitle: String?
+    @StateObject private var userScore = ScoreManager()
     
     @ViewBuilder
     func chooseDestination(index : Int) -> some View  {
+//         nah disini problemnya , ketika firstlaunch 1 item , seharunsnya item lain gak ke ikut , tapi karena screen expalanation material nya 1 screen aja , jadi ketika example programming di klik , lalu ke ecplan materi dan ke lesson page , dan explan materi screen tidak muncul lagi , tapi 3 materi lainnya ke ikut .
+        
         if isFirstLaunch.isFirstLaunch {
             ExplanationLessonScreen(explanation: dataLesson[index])
         } else {
-            LessonScreen()
+            if shouldNavigateToProgrammingView {
+                ProgrammingView()
+            } else if shouldNavigateToLogicView {
+                LogicView()
+            }else if shouldNavigateToMathematicsView  {
+                MathematicsView()
+            } else {
+                UIUXView()
+            }
         }
     }
     
@@ -69,12 +81,16 @@ struct GateView: View {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                                 shouldNavigateToLogicView = true
                             }
+                            isFirstLaunch.progress = isFirstLaunch.progress
+                            userScore.score = 0
                         }, text: "LOGICAL THINKING")
                         
                         buildingButton(action: {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                                 shouldNavigateToUIUXView = true
                             }
+                            isFirstLaunch.progress = isFirstLaunch.progress
+                            userScore.score = 0
                         }, text: "UI/UX DESIGN")
                     }
                     
@@ -83,19 +99,27 @@ struct GateView: View {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 shouldNavigateToProgrammingView = true
                             }
+                            isFirstLaunch.progress = isFirstLaunch.progress
+                            userScore.score = 0
                         }, text: "PROGRAMMING")
                         
                         buildingButton(action: {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                 shouldNavigateToMathematicsView = true
                             }
+                            isFirstLaunch.progress = isFirstLaunch.progress
+                            userScore.score = 0 
                         }, text: "MATHEMATICS")
                     }
                 }
                 .padding(.bottom, 100)
                 .background(
                     NavigationLink(
-                        destination:  chooseDestination(index: 1),
+                        destination:
+                            chooseDestination(index: 1)
+//                            print(dataLesson.indices.count[title])
+                            
+                        ,
                         isActive: $shouldNavigateToLogicView,
                         label: { EmptyView() }
                     )
@@ -150,21 +174,7 @@ struct GateView: View {
                 if showCoachMark {
                     CoachMark(isFinished: $isFinished).opacity(no_coachmark ? 0 : 1).animation(.easeInOut)
                 }
-                
-//                if isFirstLaunch.isFirstLaunch {
-//                    NavigationLink(
-//                        destination:  ExplanationLessonScreen(explanation: dataLesson[0]),
-//                        isActive: $shouldNavigateToMathematicsView,
-//                        label: { EmptyView() }
-//                    )
-//                } else {
-//                    NavigationLink(
-//                        destination:  LessonScreen(),
-//                        isActive: $shouldNavigateToMathematicsView,
-//                        label: { EmptyView() }
-//                    )
-//                }
-                
+                                
             }
             .navigationBarBackButtonHidden(true)
             .toolbar(.hidden, for: .tabBar)
@@ -172,15 +182,12 @@ struct GateView: View {
                 action : {
                             self.mode.wrappedValue.dismiss()
                         }){
-//                            if showCoachMark{
-//                               EmptyView()
-//                            } else{
-//                                Image("back")
-//                            }
-                            Image("back")
-                            
-                            
-                                
+                            if !isFinished{
+                                Text("")
+                            } else {
+                                Image("back")
+                            }
+
                         })
 
         }
@@ -197,10 +204,10 @@ struct GateView: View {
             VStack {
                 ZStack {
                     Image("progressBubble")
-                    Rectangle()
-                        .fill(Color.green)
-                        .frame(width: 50, height: 5)
-                        .padding(.bottom, 10)
+                    Text("Score \(userScore.score)")
+                        .font(.custom("SFProRounded-Bold", size: 10))
+                        .foregroundColor(.white)
+                        .padding(.bottom,10)
                 }
                 
                 ZStack {

@@ -80,7 +80,7 @@ struct MButton: View {
                 .opacity(0.25)
         )
         .tint(background)
-        .padding(20)
+        .padding(24)
         .buttonStyle(.borderedProminent)
         .buttonBorderShape(.roundedRectangle(radius: 10))
         .scaleEffect(isButtonPressed ? 0.975 : 1)

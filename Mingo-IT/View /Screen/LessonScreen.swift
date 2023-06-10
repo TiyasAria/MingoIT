@@ -12,41 +12,43 @@ struct LessonScreen: View {
     @State private var progress: Float = 0.5
     @State private var backToGate = false
 
-
     @State var quizOnePassed: Bool = false
     @State var quizTwoPassed: Bool = false
     @State var quizThreePassed: Bool = false
     
-
+    @StateObject private var userScore = ScoreManager()
+    @State var isShowingNextScreen = true
+    
+    @ViewBuilder
+    func chooseDestination() -> some View  {
+        if userScore.score >= 2 {
+           CompleteLessonScreen()
+        } else {
+            IncompleteLessonScreen()
+        }
+    }
     var body: some View {
         VStack {
-            HStack{
-//                NavigationLink(isActive: $backToGate, destination: {
-////                    GateView()
-//                }, label: {
-//                    Image(systemName: "xmark")
-//                                .font(.system(size: 24))
-//                                .bold()
-//                            .foregroundColor(Color("primaryBlue"))
-//                            .onTapGesture {
-//                                backToGate = true
-//                            }
-//                })
-                
-                ProgressView(value: progress)
-                               .progressViewStyle(LinearProgressViewStyle())
-                               .accentColor(Color("primaryBlue"))
-                              
-            }
-            .padding(.horizontal,24)
+
             ScrollView {
                
                 VStack(alignment: .leading, spacing: 25) {
                     Text("Basic Algorithm")
                         .font(.custom("SFProRounded-SemiBold", size: 32))
                     
+                    Image("AlgoIllustration")
+                        .frame(maxWidth: .infinity)
+
+                    Text("In our daily lives, from making breakfast to solving math problems to folding clothes, takes a set of step-by-step instructions to perform tasks. These series of sets are called, Algorithms.")
+                        .font(.custom("SFProRounded-Light", size: 20))
+
+
+                    Text("Algorithms are sets of instructions of what steps to take to complete a task or solve a problem. They are all around us, from making breakfast to doing homework.")
+                        .font(.custom("SFProRounded-Light", size: 20))
+
+                    
                     QuizCard(
-                        isPassed: $quizOnePassed,
+                        isPassed: $quizOnePassed, 
                         items: ["Pour the contents of glass C into glass B", "Pour the contents of glass A into glass C", "Pour the contents of glass B into glass A"],
                         itemAnswers: ["Pour the contents of glass B into glass A", "Pour the contents of glass C into glass B", "Pour the contents of glass A into glass C"],
                         explanation: "Algorithms are sets of instructions of what steps to take to complete a task or solve a problem.",
@@ -73,12 +75,7 @@ struct LessonScreen: View {
                         quizType: .multipleChoice
                     )
                     
-                    Image("AlgoIllustration")
-                        .frame(maxWidth: .infinity)
-
-                    Text("In our daily lives, from making breakfast to solving math problems to folding clothes, takes a set of step-by-step instructions to perform tasks. These series of sets are called, Algorithms.")
-
-                    Text("Algorithms are sets of instructions of what steps to take to complete a task or solve a problem. They are all around us, from making breakfast to doing homework.")
+                   
                     
                     
                 }
@@ -86,7 +83,15 @@ struct LessonScreen: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(20)
             
-            MButton(text: "Continue", isFullWidth: true, background: Color("primaryOrange"))
+                MButton(text: "Continue", isFullWidth: true, background: Color("primaryOrange"))
+                    .background(
+                        NavigationLink(isActive: $isShowingNextScreen, destination: {
+                            chooseDestination()
+                        }, label: {
+                            EmptyView()
+                        })
+                    )
+           
         }
 //        .navigationBarBackButtonHidden(true)
     }

@@ -13,13 +13,31 @@ struct ExplanationLessonScreen: View {
     @State var currentIndex  = 0
     @State private var isShowingNextScreen = false
     @StateObject private var isFirstLaunchScreen = UserManager()
-
-
+    
+    
+    //    func isFirstLaunch(){
+    //        if
+    //    }
+    
+    @ViewBuilder
+    func chooseDestination() -> some View  {
+        if explanation.title == "Programming" {
+            ProgrammingView()
+        } else if explanation.title == "Logical Thinking" {
+            LogicView()
+        }else if explanation.title == "Mathematic" {
+            MathematicsView()
+        } else {
+            UIUXView()
+        }
+    }
     
     var body: some View {
+        
+        
+        
         NavigationStack {
             VStack{
-                
                 Image(explanation.image[currentIndex])
                     .resizable()
                     .scaledToFit()
@@ -36,7 +54,7 @@ struct ExplanationLessonScreen: View {
                         .offset(y: 20)
                         .padding(.bottom, 10)
                     
-                   
+                    
                     
                     Text(explanation.description[currentIndex])
                         .font(.custom("SFProRounded-Reguler", size: 20))
@@ -47,7 +65,7 @@ struct ExplanationLessonScreen: View {
                         .foregroundColor(.white)
                     
                     NavigationLink( isActive: $isShowingNextScreen, destination: {
-                        LessonScreen()
+                        chooseDestination()
                     }, label: {
                         MButton(text: currentIndex == explanation.description.count - 1  ? "I’m Ready to Learn!" : "Next",
                                 isFullWidth: true, background: Color("primaryOrange"), action: {
@@ -57,20 +75,21 @@ struct ExplanationLessonScreen: View {
                                 } else {
                                     print("masuk")
                                     self.isShowingNextScreen = true
-                                    
+//                                    ketika sudah tampil , maka isfirstLaunch akan diubah menjadi false 
                                     isFirstLaunchScreen.isFirstLaunch.toggle()
+                                    
                                 }
                             }
                         }
                         )
                     })
                     .padding(.bottom, 20)
-
+                    
                     
                     
                     
                 }
-              
+                
                 .background(Color("primaryBlue"))
                 .clipShape(
                     RoundedCornerItem(radius: 30, corners: [.topLeft,.topRight])
@@ -80,7 +99,7 @@ struct ExplanationLessonScreen: View {
             }
             .offset(y:60)
             .ignoresSafeArea()
-            .navigationBarBackButtonHidden(true)
+            //            .navigationBarBackButtonHidden(true)
         }
         
         

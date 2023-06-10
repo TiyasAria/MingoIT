@@ -9,9 +9,10 @@ import SwiftUI
 
 struct CompleteLessonScreen: View {
     @State private var isActive = false
-    
+    @StateObject var userData = ScoreManager()
+
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 Spacer()
                 
@@ -29,7 +30,7 @@ struct CompleteLessonScreen: View {
                 
                 HStack {
                     Image(systemName: "desktopcomputer")
-                    Text("Programming + 3")
+                    Text("Programming + \(userData.score)")
                 }
                 .frame(width: 310)
                 .padding(15)
@@ -42,8 +43,10 @@ struct CompleteLessonScreen: View {
                 
                 Spacer()
             
-                NavigationLink(destination: IncompleteLessonScreen(), isActive: $isActive) {
-                    MButton(text: "Continue", isFullWidth: true, background: Color("primaryOrange")) 
+                NavigationLink(destination: GateView(), isActive: $isActive) {
+                    MButton(text: "Continue", isFullWidth: true, background: Color("primaryOrange"), action: {
+                        isActive = true
+                    })
                 }
             }
         }

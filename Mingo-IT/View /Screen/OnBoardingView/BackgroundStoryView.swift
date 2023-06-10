@@ -78,6 +78,8 @@ struct BackgroundStoryView: View {
                             }
                         }
                         )
+                        
+
                     })
                     .padding(.bottom, 10)
                     
