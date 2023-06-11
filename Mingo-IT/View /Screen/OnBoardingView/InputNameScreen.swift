@@ -13,6 +13,7 @@ struct InputNameScreen: View {
     @State var currentUser : String   = ""
     @State private var isShowingNextScreen : Bool = false
     @StateObject private var userManager = UserManager()
+    @StateObject private var userScore = ScoreManager()
     
     
     
@@ -71,7 +72,14 @@ struct InputNameScreen: View {
     
     func signIn(){
         userManager.currentUsername = currentUser
-        
+        userManager.isFirstLaunchDesign = true
+        userManager.isFirstLaunchProgramming = true
+        userManager.isFirstLaunchMath = true
+        userManager.isFirstLaunchLogic = true
+        userScore.scoreDesign = 0
+        userScore.scoreMath = 0
+        userScore.scoreLogic = 0
+        userScore.scoreProgramming = 0
     }
 }
 

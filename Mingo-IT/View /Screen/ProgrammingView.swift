@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ProgrammingView: View {
-    @State private var progressValue : Float  = 0.25
-    @State private var programmingState = 0
+    @AppStorage("progressValue") private var progressValue : Double  = 0.25
+    @AppStorage("programmingState") private var programmingState = 0
     @State private var moveNextScreen  = false
     @StateObject private var userData = UserManager()
     @StateObject private var userScore = ScoreManager()
@@ -25,29 +25,17 @@ struct ProgrammingView: View {
     
     @ViewBuilder
     func chooseDestination() -> some View {
-        if (programmingState == 3) && (userScore.score >= 2) {
-            CompleteLessonScreen()
+        if (programmingState == 3) && (userScore.scoreProgramming >= 2) {
+            CompleteLessonScreen( materialType: .programming)
         } else {
-            IncompleteLessonScreen()
+            IncompleteLessonScreen(materialType: .programming)
         }
     }
     
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 24){
-//                HStack {
-//                    Image(systemName: "xmark")
-//                        .foregroundColor(Color("primaryBlue"))
-//                        .font(.system(size: 24))
-//                        .bold()
-//                        .padding(.trailing,10)
-//
-//
-//                }
-//                .padding(.vertical,10)
-//                .padding(.horizontal,24)
-                
-                ProgressbarQuiz(value: $userData.progress)
+                ProgressbarQuiz(value: $progressValue)
                     .frame(height: 15)
                     .padding(.horizontal,24)
                     .padding(.top,20)
@@ -75,7 +63,7 @@ struct ProgrammingView: View {
                             background:  Color("primaryBlue"),
                             action: {
                         programmingState -= 1
-                        userData.progress -= 0.25
+                        progressValue -= 0.25
                      }
                     ).disabled(programmingState == 0)
                     
@@ -88,7 +76,7 @@ struct ProgrammingView: View {
                             moveNextScreen = true
                         } else {
                             programmingState += 1
-                            userData.progress += 0.25
+                            progressValue += 0.25
                         }
                     
 
@@ -105,7 +93,7 @@ struct ProgrammingView: View {
                 }
                 
 //                ini text untuk placeholder aja untuk check scorenya masuk atau ngga , nantinya akan di remove text ini
-                Text("Score \(userScore.score)")
+                Text("Score \(userScore.scoreProgramming)")
                     .padding(.leading, 150)
                 
             }
@@ -163,10 +151,11 @@ extension ProgrammingView {
         VStack(alignment: .leading, spacing: 24){
             Text("Here are some simple algorithm examples: \n \n1. Brushing Your Teeth \n2. Wet your toothbrush. \n3. Put toothpaste on the toothbrush. \n4. Brush your teeth for two minutes. \n5. Spit out the toothpaste. \n6. Rinse your mouth and toothbrush with water. \n \n \nAlgorithms help us complete tasks efficiently and effectively.")
             .font(.custom("SFProRounded-light", size: 20))
-            
-//             how to make this card data nya kalau kita udah berhasil jaawab entah benar atau salah , dia akan ke save , jadi ketika next state akan ke soal baru , dan back lagi ke soal ini tampilannya tampilan true/false karena sudah berhasil mencoba.
-            
+                        
             QuizCard(
+                
+                materialType: .programming,
+                isTry: $userData.isDoneQuestionOne,
                 isPassed: $quizOnePassed,
                 title: "What exactly Algorithm is?",
                 answer: "A sets of Instructions",
@@ -185,6 +174,9 @@ extension ProgrammingView {
            
             
             QuizCard(
+                materialType: .programming,
+                isTry: $userData.isDoneQuestionTwo,
+
                 isPassed: $quizTwoPassed,
                 question: [
                     "An algorithm is a set of step-by-step",
@@ -213,6 +205,9 @@ extension ProgrammingView {
             
             
             QuizCard(
+                materialType: .programming,
+                isTry: $userData.isDoneQuestionThree,
+
                 isPassed: $quizThreePassed,
                 items: ["Pour the contents of glass C into glass B", "Pour the contents of glass A into glass C", "Pour the contents of glass B into glass A"],
                 itemAnswers: ["Pour the contents of glass B into glass A", "Pour the contents of glass C into glass B", "Pour the contents of glass A into glass C"],

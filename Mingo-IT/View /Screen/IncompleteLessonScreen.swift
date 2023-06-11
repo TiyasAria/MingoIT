@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct IncompleteLessonScreen: View {
+struct IncompleteLessonScreen : View {
+//    let previousScreenType : PreviousScreen.Type
+    let materialType  : QuizMaterial
+    
     @StateObject var userData = ScoreManager()
     @State var isActive = false
     @Environment(\.presentationMode) var presentationMode
@@ -31,7 +34,18 @@ struct IncompleteLessonScreen: View {
                 
                 HStack {
                     Image(systemName: "desktopcomputer")
-                    Text("Programming + \(userData.score)")
+                    switch materialType{
+                    case .programming :
+                        Text("Programming + \(userData.scoreProgramming)")
+                    case .logic :
+                        Text("Logic + \(userData.scoreLogic)")
+                    case .mathematic :
+                        Text("Mathematic + \(userData.scoreMath)")
+                    case .design :
+                        Text("Design + \(userData.scoreDesign)")
+                    default :
+                        Text("")
+                    }
                 }
                 .frame(width: 310)
                 .padding(17)
@@ -53,7 +67,9 @@ struct IncompleteLessonScreen: View {
                     NavigationLink(isActive: $isActive, destination: {
                         GateView()
                     }, label: {
-                        MButton(text: "Continue", isFullWidth: true, background: Color("primaryOrange"))
+                        MButton(text: "Continue", isFullWidth: true, background: Color("primaryOrange")) {
+                            isActive = true
+                        }
                     }) 
                 }
             }
@@ -61,8 +77,8 @@ struct IncompleteLessonScreen: View {
     }
 }
 
-struct IncompleteLessonView_Previews: PreviewProvider {
-    static var previews: some View {
-        IncompleteLessonScreen()
-    }
-}
+//struct IncompleteLessonView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        IncompleteLessonScreen()
+//    }
+//}

@@ -21,11 +21,11 @@ struct LessonScreen: View {
     
     @ViewBuilder
     func chooseDestination() -> some View  {
-        if userScore.score >= 2 {
-           CompleteLessonScreen()
-        } else {
-            IncompleteLessonScreen()
-        }
+//        if userScore.score >= 2 {
+//           CompleteLessonScreen()
+//        } else {
+//            IncompleteLessonScreen()
+//        }
     }
     var body: some View {
         VStack {
@@ -47,33 +47,36 @@ struct LessonScreen: View {
                         .font(.custom("SFProRounded-Light", size: 20))
 
                     
-                    QuizCard(
-                        isPassed: $quizOnePassed, 
-                        items: ["Pour the contents of glass C into glass B", "Pour the contents of glass A into glass C", "Pour the contents of glass B into glass A"],
-                        itemAnswers: ["Pour the contents of glass B into glass A", "Pour the contents of glass C into glass B", "Pour the contents of glass A into glass C"],
-                        explanation: "Algorithms are sets of instructions of what steps to take to complete a task or solve a problem.",
-                        quizType: .drag
-                    )
+//                    QuizCard(
+//                        materialType: .programming,
+//                        isPassed: $quizOnePassed,
+//                        items: ["Pour the contents of glass C into glass B", "Pour the contents of glass A into glass C", "Pour the contents of glass B into glass A"],
+//                        itemAnswers: ["Pour the contents of glass B into glass A", "Pour the contents of glass C into glass B", "Pour the contents of glass A into glass C"],
+//                        explanation: "Algorithms are sets of instructions of what steps to take to complete a task or solve a problem.",
+//                        quizType: .drag
+//                    )
                     
-                    QuizCard(
-                        isPassed: $quizTwoPassed,
-                        question: [
-                            "An algorithm is a set of step-by-step",
-                            "logic",
-                            "that describe how to perform a task."
-                        ],
-                        explanation: "An algorithm is a set of step-by-step instruction  that describe how to perform a task. ",
-                        quizType: .fillTheBlank
-                    )
-                    
-                    QuizCard(
-                        isPassed: $quizThreePassed,
-                        title: "What exactly Algorithm is?",
-                        answer: "A sets of Instructions",
-                        items: ["A sets of command", "A sets of Instructions", "A sets for making tea"],
-                        explanation: "Algorithms are sets of instructions of what steps to take to complete a task or solve a problem.",
-                        quizType: .multipleChoice
-                    )
+//                    QuizCard(
+//                        materialType: .programming,
+//                        isPassed: $quizTwoPassed,
+//                        question: [
+//                            "An algorithm is a set of step-by-step",
+//                            "logic",
+//                            "that describe how to perform a task."
+//                        ],
+//                        explanation: "An algorithm is a set of step-by-step instruction  that describe how to perform a task. ",
+//                        quizType: .fillTheBlank
+//                    )
+//
+//                    QuizCard(
+//                        materialType: .programming,
+//                        isPassed: $quizThreePassed,
+//                        title: "What exactly Algorithm is?",
+//                        answer: "A sets of Instructions",
+//                        items: ["A sets of command", "A sets of Instructions", "A sets for making tea"],
+//                        explanation: "Algorithms are sets of instructions of what steps to take to complete a task or solve a problem.",
+//                        quizType: .multipleChoice
+//                    )
                     
                    
                     

@@ -33,7 +33,6 @@
 		57B632472A30A2B500DE7B04 /* Username.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B632462A30A2B500DE7B04 /* Username.swift */; };
 		57B632492A30AC0400DE7B04 /* LevelPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B632482A30AC0400DE7B04 /* LevelPageView.swift */; };
 		57B6324D2A30B0E300DE7B04 /* RoundedCornerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6324C2A30B0E300DE7B04 /* RoundedCornerItem.swift */; };
-		57B6324F2A30F77000DE7B04 /* GatePageScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6324E2A30F77000DE7B04 /* GatePageScreen.swift */; };
 		57D3DE182A2CDC9A00EC774D /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D3DE172A2CDC9A00EC774D /* OnBoardingScreen.swift */; };
 		57D3DE1A2A2CDCCA00EC774D /* ExplanationLessonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D3DE192A2CDCCA00EC774D /* ExplanationLessonScreen.swift */; };
 		57D3DE1C2A2CDE5200EC774D /* DataExplanationLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D3DE1B2A2CDE5200EC774D /* DataExplanationLesson.swift */; };
@@ -82,7 +81,6 @@
 		57B632462A30A2B500DE7B04 /* Username.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Username.swift; sourceTree = "<group>"; };
 		57B632482A30AC0400DE7B04 /* LevelPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelPageView.swift; sourceTree = "<group>"; };
 		57B6324C2A30B0E300DE7B04 /* RoundedCornerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerItem.swift; sourceTree = "<group>"; };
-		57B6324E2A30F77000DE7B04 /* GatePageScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatePageScreen.swift; sourceTree = "<group>"; };
 		57D3DE172A2CDC9A00EC774D /* OnBoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreen.swift; sourceTree = "<group>"; };
 		57D3DE192A2CDCCA00EC774D /* ExplanationLessonScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationLessonScreen.swift; sourceTree = "<group>"; };
 		57D3DE1B2A2CDE5200EC774D /* DataExplanationLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExplanationLesson.swift; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 				57D3DE162A2CDC7500EC774D /* OnBoardingView */,
 				57D3DE192A2CDCCA00EC774D /* ExplanationLessonScreen.swift */,
 				57B632482A30AC0400DE7B04 /* LevelPageView.swift */,
-				57B6324E2A30F77000DE7B04 /* GatePageScreen.swift */,
 				5721C6342A2ADB050010108C /* SplashScreen.swift */,
 				05DF57592A3330E200D3907C /* CoachMark.swift */,
 				05DF575B2A3330E200D3907C /* GateView.swift */,
@@ -338,7 +335,6 @@
 				57B632492A30AC0400DE7B04 /* LevelPageView.swift in Sources */,
 				8C33A6822A2CA3C70000A067 /* CompleteLessonScreen.swift in Sources */,
 				577BFDC72A33FAD300DD369B /* Quiz.swift in Sources */,
-				57B6324F2A30F77000DE7B04 /* GatePageScreen.swift in Sources */,
 				05DF57612A3330E200D3907C /* UIUXView.swift in Sources */,
 				572B07372A2C39A200E341A1 /* HomeScreen.swift in Sources */,
 				57D3DE1C2A2CDE5200EC774D /* DataExplanationLesson.swift in Sources */,

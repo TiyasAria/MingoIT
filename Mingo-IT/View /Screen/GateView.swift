@@ -17,32 +17,56 @@ struct GateView: View {
     @State private var isFinished = false
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-
+    
     
     @AppStorage("no_coachmark") var no_coachmark = false
-    @StateObject private var isFirstLaunch = UserManager()
+    @StateObject private var userInteraction = UserManager()
     @State private var selectedTitle: String?
     @StateObject private var userScore = ScoreManager()
     
     @ViewBuilder
-    func chooseDestination(index : Int) -> some View  {
-//         nah disini problemnya , ketika firstlaunch 1 item , seharunsnya item lain gak ke ikut , tapi karena screen expalanation material nya 1 screen aja , jadi ketika example programming di klik , lalu ke ecplan materi dan ke lesson page , dan explan materi screen tidak muncul lagi , tapi 3 materi lainnya ke ikut .
+    func chooseDestinationProgramming() -> some View  {
         
-        if isFirstLaunch.isFirstLaunch {
-            ExplanationLessonScreen(explanation: dataLesson[index])
+        if userInteraction.isFirstLaunchProgramming {
+            ExplanationLessonScreen(explanation: dataLesson[0])
         } else {
-            if shouldNavigateToProgrammingView {
-                ProgrammingView()
-            } else if shouldNavigateToLogicView {
-                LogicView()
-            }else if shouldNavigateToMathematicsView  {
-                MathematicsView()
-            } else {
-                UIUXView()
-            }
+            ProgrammingView()
         }
+        
     }
     
+    @ViewBuilder
+    func chooseDestinationLogic() -> some View  {
+        
+        if userInteraction.isFirstLaunchLogic {
+            ExplanationLessonScreen(explanation: dataLesson[1])
+        } else {
+            LogicView()
+        }
+        
+    }
+    
+    @ViewBuilder
+    func chooseDestinationMathematic() -> some View  {
+        
+        if userInteraction.isFirstLaunchMath {
+            ExplanationLessonScreen(explanation: dataLesson[2])
+        } else {
+            MathematicsView()
+        }
+        
+    }
+    
+    @ViewBuilder
+    func chooseDestinationDesign () -> some View  {
+        
+        if userInteraction.isFirstLaunchDesign {
+            ExplanationLessonScreen(explanation: dataLesson[3])
+        } else {
+            UIUXView()
+        }
+        
+    }
     var body: some View {
         
         NavigationStack{
@@ -77,49 +101,89 @@ struct GateView: View {
                 
                 VStack(spacing: 70) {
                     HStack(spacing: 100) {
-                        buildingButton(action: {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                shouldNavigateToLogicView = true
+                        VStack {
+                            ZStack {
+                                Image("progressBubble")
+                                
+                                Text("Score \(userScore.scoreLogic)")
+                                    .font(.custom("SFProRounded-Bold", size: 10))
+                                    .foregroundColor(.white)
+                                    .padding(.bottom,10)
+                                
                             }
-                            isFirstLaunch.progress = isFirstLaunch.progress
-                            userScore.score = 0
-                        }, text: "LOGICAL THINKING")
+                            
+                            buildingButton(action: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                    shouldNavigateToLogicView = true
+                                }
+                                userScore.scoreLogic = 0
+                            }, text: "LOGICAL THINKING")
+                        }
                         
-                        buildingButton(action: {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                shouldNavigateToUIUXView = true
+                        VStack {
+                            ZStack {
+                                Image("progressBubble")
+                                
+                                Text("Score \(userScore.scoreDesign)")
+                                    .font(.custom("SFProRounded-Bold", size: 10))
+                                    .foregroundColor(.white)
+                                    .padding(.bottom,10)
+                                
                             }
-                            isFirstLaunch.progress = isFirstLaunch.progress
-                            userScore.score = 0
-                        }, text: "UI/UX DESIGN")
+                            
+                            buildingButton(action: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                    shouldNavigateToUIUXView = true
+                                }
+                                userScore.scoreDesign = 0
+                            }, text: "UI/UX DESIGN")
+                        }
                     }
                     
                     HStack(spacing: 100) {
-                        buildingButton(action: {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                shouldNavigateToProgrammingView = true
+                        VStack {
+                            ZStack {
+                                Image("progressBubble")
+                                
+                                Text("Score \(userScore.scoreProgramming)")
+                                    .font(.custom("SFProRounded-Bold", size: 10))
+                                    .foregroundColor(.white)
+                                    .padding(.bottom,10)
+                                
                             }
-                            isFirstLaunch.progress = isFirstLaunch.progress
-                            userScore.score = 0
-                        }, text: "PROGRAMMING")
+                            
+                            buildingButton(action: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    shouldNavigateToProgrammingView = true
+                                }
+                                userScore.scoreProgramming = 0
+                            }, text: "PROGRAMMING")
+                        }
                         
-                        buildingButton(action: {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                shouldNavigateToMathematicsView = true
+                        VStack {
+                            ZStack {
+                                Image("progressBubble")
+                                
+                                Text("Score \(userScore.scoreMath)")
+                                    .font(.custom("SFProRounded-Bold", size: 10))
+                                    .foregroundColor(.white)
+                                    .padding(.bottom,10)
+                                
                             }
-                            isFirstLaunch.progress = isFirstLaunch.progress
-                            userScore.score = 0 
-                        }, text: "MATHEMATICS")
+                            
+                            buildingButton(action: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    shouldNavigateToMathematicsView = true
+                                }
+                                userScore.scoreMath = 0
+                            }, text: "MATHEMATICS")
+                        }
                     }
                 }
-                .padding(.bottom, 100)
+                .padding(.bottom, 70)
                 .background(
                     NavigationLink(
-                        destination:
-                            chooseDestination(index: 1)
-//                            print(dataLesson.indices.count[title])
-                            
-                        ,
+                        destination: chooseDestinationLogic(),
                         isActive: $shouldNavigateToLogicView,
                         label: { EmptyView() }
                     )
@@ -127,7 +191,7 @@ struct GateView: View {
                 )
                 .background(
                     NavigationLink(
-                        destination:  chooseDestination(index: 3),
+                        destination:  chooseDestinationDesign(),
                         isActive: $shouldNavigateToUIUXView,
                         label: { EmptyView() }
                     )
@@ -135,7 +199,7 @@ struct GateView: View {
                 )
                 .background(
                     NavigationLink(
-                        destination:  chooseDestination(index: 0),
+                        destination:  chooseDestinationProgramming(),
                         isActive: $shouldNavigateToProgrammingView,
                         label: { EmptyView() }
                     )
@@ -143,7 +207,7 @@ struct GateView: View {
                 )
                 .background(
                     NavigationLink(
-                        destination:  chooseDestination(index: 2),
+                        destination:  chooseDestinationMathematic(),
                         isActive: $shouldNavigateToMathematicsView,
                         label: { EmptyView() }
                     )
@@ -174,42 +238,39 @@ struct GateView: View {
                 if showCoachMark {
                     CoachMark(isFinished: $isFinished).opacity(no_coachmark ? 0 : 1).animation(.easeInOut)
                 }
-                                
+                
             }
             .navigationBarBackButtonHidden(true)
             .toolbar(.hidden, for: .tabBar)
             .navigationBarItems(leading: Button(
                 action : {
-                            self.mode.wrappedValue.dismiss()
-                        }){
-                            if !isFinished{
-                                Text("")
-                            } else {
-                                Image("back")
-                            }
-
-                        })
-
+                    self.mode.wrappedValue.dismiss()
+                }){
+                    Image("back")
+                })
+            
         }
         
         
-
+        
     }
     
     private func buildingButton(action: @escaping () -> Void, text: String) -> some View {
         let buildingImage = Image("learningBuilding")
-      
+        
         
         return Button(action: action) {
             VStack {
-                ZStack {
-                    Image("progressBubble")
-                    Text("Score \(userScore.score)")
-                        .font(.custom("SFProRounded-Bold", size: 10))
-                        .foregroundColor(.white)
-                        .padding(.bottom,10)
-                }
-                
+//                ZStack {
+//                    Image("progressBubble")
+//
+//                    Text("Score \(userScore.scoreProgramming)")
+//                        .font(.custom("SFProRounded-Bold", size: 10))
+//                        .foregroundColor(.white)
+//                        .padding(.bottom,10)
+//
+//                }
+//
                 ZStack {
                     buildingImage
                         .resizable()

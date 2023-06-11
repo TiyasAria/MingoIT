@@ -15,10 +15,7 @@ struct ExplanationLessonScreen: View {
     @StateObject private var isFirstLaunchScreen = UserManager()
     
     
-    //    func isFirstLaunch(){
-    //        if
-    //    }
-    
+  
     @ViewBuilder
     func chooseDestination() -> some View  {
         if explanation.title == "Programming" {
@@ -75,9 +72,20 @@ struct ExplanationLessonScreen: View {
                                 } else {
                                     print("masuk")
                                     self.isShowingNextScreen = true
-//                                    ketika sudah tampil , maka isfirstLaunch akan diubah menjadi false 
-                                    isFirstLaunchScreen.isFirstLaunch.toggle()
-                                    
+                                    if explanation.title == "Programming" {
+                                        isFirstLaunchScreen.isFirstLaunchProgramming.toggle()
+                                    } else if explanation.title == "Logical Thinking" {
+                                        isFirstLaunchScreen.isFirstLaunchLogic.toggle()
+                                    }else if explanation.title == "Mathematic" {
+                                        isFirstLaunchScreen.isFirstLaunchMath.toggle()
+                                      
+                                    } else {
+                                        isFirstLaunchScreen.isFirstLaunchDesign.toggle()
+                                    }
+                                   
+                                   
+                                  
+            
                                 }
                             }
                         }
@@ -99,7 +107,7 @@ struct ExplanationLessonScreen: View {
             }
             .offset(y:60)
             .ignoresSafeArea()
-            //            .navigationBarBackButtonHidden(true)
+            .navigationBarBackButtonHidden(true)
         }
         
         

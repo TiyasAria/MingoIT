@@ -40,7 +40,7 @@ struct LevelPageView: View {
                         //            box info  mapel and value
                         if currentLevel == 0  {
                             withAnimation(.easeOut(duration: 1)){
-                               BoxEnable(point: $point)
+                               BoxEnable()
                             }
                             
                             
@@ -126,8 +126,7 @@ struct LevelPageView_Previews: PreviewProvider {
 
 struct ItemBox: View {
     var title : String
-    @Binding var point : Int
-    
+    @State var score : Int
     
     var body: some View {
         HStack {
@@ -139,7 +138,7 @@ struct ItemBox: View {
             
             Spacer()
             
-            Text("\(point)/5")
+            Text("\(score)/3")
                 .foregroundColor( Color("primaryBlue"))
                 .padding(.all, 5)
                 .background( .white )
@@ -182,7 +181,7 @@ struct contentBoxDisable : View {
             
             Spacer()
             
-            Text("3/5")
+            Text("2/3")
                 .foregroundColor( Color.init(hex: "8D8D8D"))
                 .padding(.all, 5)
                 .background( Color.init(hex: "CBC9C9") )
@@ -193,13 +192,14 @@ struct contentBoxDisable : View {
 }
 
 struct BoxEnable: View {
-    @Binding var point : Int
+    @StateObject var score =  ScoreManager()
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10){
-            ItemBox(title: "Programming", point:$point)
-            ItemBox(title: "Logical Thingking", point:$point)
-            ItemBox(title: "Mathematic", point:$point)
-            ItemBox(title: "Design UI/UX", point:$point)
+            ItemBox(title: "Programming", score: score.scoreProgramming)
+            ItemBox(title: "Logical Thingking",  score: score.scoreLogic)
+            ItemBox(title: "Mathematic",  score: score.scoreMath)
+            ItemBox(title: "Design UI/UX",  score: score.scoreDesign)
         }
         .frame(width: 240, height: 161)
         .padding()

@@ -8,9 +8,28 @@
 import SwiftUI
 
 struct LogicView: View {
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+
     var body: some View {
-        Text("Logic")
-    }
+        NavigationStack{
+            VStack{
+                Text("Logic cuy")
+            }
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItemGroup (placement: .navigationBarLeading){
+                    Image(systemName: "xmark")
+                        .foregroundColor(Color("primaryBlue"))
+                        .font(.system(size: 24))
+                        .bold()
+                        .padding(.trailing,10)
+                        .onTapGesture {
+                            self.mode.wrappedValue.dismiss()
+                        }
+                    
+                }
+            }
+        }    }
 }
 
 struct LogicView_Previews: PreviewProvider {

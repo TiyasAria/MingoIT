@@ -8,8 +8,28 @@
 import SwiftUI
 
 struct MathematicsView: View {
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+
     var body: some View {
-        Text("Mathematics")
+        NavigationStack{
+            VStack{
+                Text("Mathematica cuy")
+            }
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItemGroup (placement: .navigationBarLeading){
+                    Image(systemName: "xmark")
+                        .foregroundColor(Color("primaryBlue"))
+                        .font(.system(size: 24))
+                        .bold()
+                        .padding(.trailing,10)
+                        .onTapGesture {
+                            self.mode.wrappedValue.dismiss()
+                        }
+                    
+                }
+            }
+        }
     }
 }
 

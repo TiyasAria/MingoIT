@@ -11,7 +11,14 @@ enum QuizType {
     case multipleChoice, fillTheBlank, drag
 }
 
+enum QuizMaterial {
+    case logic , mathematic , programming , design
+}
+
 struct QuizCard: View {
+    let materialType : QuizMaterial
+    
+    @Binding var isTry : Bool
     @Binding var isPassed: Bool
     var score = 0
     @State private var isSelected = false
@@ -23,9 +30,9 @@ struct QuizCard: View {
     @State private var userAnswer: String = ""
     @State private var isEditing:Bool = false
     @State private var userAnswerDrag: [String] = [String]()
-    @AppStorage("result") var result : Bool = false
 
     @StateObject private var userScore = ScoreManager()
+    @StateObject private var userManager = UserManager()
    
     
     var title: String?
@@ -120,8 +127,10 @@ struct QuizCard: View {
                         }
                         
                         MButton(text: "Submit", background: Color("primaryOrange")) {
+                          
                             if !isExplain {
                                 isSelected = true
+                               
                                 switch quizType {
                                 case .drag:
                                     var userAnswerContainer: [String] = userAnswerDrag
@@ -129,20 +138,22 @@ struct QuizCard: View {
                                     
                                     answer = itemAnswers.joined()
                                     userAnswer = userAnswerContainer.joined()
-                                    
+                                   
                                     print("kunci")
                                     print(answer)
                                     print("jawaban")
                                     print(userAnswer)
                                 case .fillTheBlank:
                                     answer = question![1]
+                                   
                                 case .multipleChoice:
+                                  
                                     break
                                 }
                                 
                                 if userAnswer != "" {
                                     isSubmitted = true
-                                    
+                                   
                                     if userAnswer.lowercased() == answer.lowercased() {
                                         isCorrect = true
                                         isInCorrect = false
@@ -153,17 +164,32 @@ struct QuizCard: View {
                                     
                                     
                                     isPassed = isCorrect
-                                   
+                                  
 
                                 }
 //                                 update score 
                                 if isCorrect == true {
-                                    userScore.updateScore()
+                                    switch materialType {
+                                    case .programming :
+                                        userScore.updateScoreProgramming()
+                                    case.logic :
+                                        userScore.updateScoreLogic()
+                                    case.design :
+                                        userScore.updateScoreDesign()
+                                    case.mathematic :
+                                        userScore.updateScoreMath()
+                                    default :
+                                        break
+                                    }
+                               
                                 }
+                               
+                                
                                 
                             }
-//                             aku buat disable karena ketika dia sudah menjawab entah benar atau salah , dia
-//                        tdk bisa menjawab lagi , tapi bisa buka explanation . ini mempengaruhi di scorenya dan tampilan complete dan incomplete screen .
+                            userManager.isDoneQuestionOne = true
+                            userManager.isDoneQuestionTwo = true
+                            userManager.isDoneQuestionThree = true
                         }.disabled(isSubmitted)
                     }
                     .offset(y: 20)
