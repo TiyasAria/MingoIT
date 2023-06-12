@@ -67,6 +67,7 @@ struct InputNameScreen: View {
                 
             }
             .padding(.vertical, 30)
+            .navigationBarBackButtonHidden(true)
         }
     }
     

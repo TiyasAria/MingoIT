@@ -32,6 +32,7 @@ struct HomeScreen: View {
                 .tag(2)
             }
             .accentColor(Color.init(hex: "54AAB4"))
+            .navigationBarBackButtonHidden(true)
         }
 
 }

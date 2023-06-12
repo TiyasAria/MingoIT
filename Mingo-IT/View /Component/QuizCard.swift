@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LaTeXSwiftUI
 
 enum QuizType {
     case multipleChoice, fillTheBlank, drag
@@ -52,17 +53,17 @@ struct QuizCard: View {
                         if isExplain {
                             Group {
                                 if title != nil {
-                                    Text(title!)
+                                   LaTeX(title!)
                                 }
                                 
                                 Text("Explanation")
                                     .font(.headline)
                                 
-                                Text(explanation)
+                                LaTeX(explanation)
                             }
                         }else {
                             if title != nil {
-                                Text(title!)
+                                LaTeX(title!)
                             }
                             
                             switch quizType {
@@ -79,7 +80,7 @@ struct QuizCard: View {
                                         Text("\(question![0]) ")
                                         + Text(userAnswer != "" ? "\(userAnswer)" : " ____ ")
                                             .bold()
-                                        + Text(" \(question![0])")
+                                        + Text(" \(question![2])")
                                     }
                                     .onTapGesture {
                                         isEditing = true
@@ -160,8 +161,10 @@ struct QuizCard: View {
                                     }
                                     
                                     
-//                                    isPassed = isCorrect
-                                  
+                                    isPassed = isCorrect
+                                    userManager.isDoneQuestionOne = true
+                                    userManager.isDoneQuestionTwo = true
+                                    userManager.isDoneQuestionThree = true
 
                                 }
 //                                 update score 
@@ -184,9 +187,7 @@ struct QuizCard: View {
                                 
                                 
                             }
-                            userManager.isDoneQuestionOne = true
-                            userManager.isDoneQuestionTwo = true
-                            userManager.isDoneQuestionThree = true
+                          
                         }.disabled(isSubmitted)
                     }
                     .offset(y: 20)

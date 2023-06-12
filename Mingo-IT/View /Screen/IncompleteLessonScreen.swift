@@ -73,6 +73,7 @@ struct IncompleteLessonScreen : View {
                     }) 
                 }
             }
+            .navigationBarBackButtonHidden(true)
         }
     }
 }

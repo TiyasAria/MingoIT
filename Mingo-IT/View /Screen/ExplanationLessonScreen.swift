@@ -13,19 +13,20 @@ struct ExplanationLessonScreen: View {
     @State var currentIndex  = 0
     @State private var isShowingNextScreen = false
     @StateObject private var isFirstLaunchScreen = UserManager()
-    
+    @State private var mingoGatePosition: CGPoint = .zero
+
     
   
     @ViewBuilder
     func chooseDestination() -> some View  {
         if explanation.title == "Programming" {
-            ProgrammingView()
+            ProgrammingView(mingoGatePosition: $mingoGatePosition)
         } else if explanation.title == "Logical Thinking" {
-            LogicView()
+            LogicView(mingoGatePosition: $mingoGatePosition)
         }else if explanation.title == "Mathematic" {
-            MathematicsView()
+            MathematicsView(mingoGatePosition: $mingoGatePosition)
         } else {
-            UIUXView()
+            UIUXView(mingoGatePosition: $mingoGatePosition)
         }
     }
     
