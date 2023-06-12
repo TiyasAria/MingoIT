@@ -107,6 +107,9 @@ struct MathematicsView: View {
                 }
             }
         }
+        .onDisappear {
+                       mingoGatePosition = .zero
+                   }
     }
 }
 

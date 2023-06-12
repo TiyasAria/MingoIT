@@ -30,7 +30,11 @@ struct LogicView: View {
                     
                 }
             }
-        }    }
+        }        .onDisappear {
+            mingoGatePosition = .zero
+        }
+        
+    }
 }
 
 struct LogicView_Previews: PreviewProvider {

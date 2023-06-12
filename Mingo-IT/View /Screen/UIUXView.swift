@@ -109,6 +109,8 @@ struct UIUXView: View {
                     
                 }
             }
+        }        .onDisappear {
+            mingoGatePosition = .zero
         }
     }
 }
