@@ -22,7 +22,7 @@ struct BackgroundStoryView: View {
     ]
     
     let title = [
-        "Hello Harry!",
+        "Hello",
         "Meet Mingo",
         "Building Skills" ,
         "Enter The Digital Frontier",

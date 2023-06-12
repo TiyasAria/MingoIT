@@ -21,6 +21,9 @@ struct ProgrammingView: View {
     @State var quizTwoPassed: Bool = false
     @State var quizThreePassed: Bool = false
     
+    @Binding var mingoGatePosition: CGPoint
+
+    
    
     
     @ViewBuilder
@@ -67,32 +70,28 @@ struct ProgrammingView: View {
                      }
                     ).disabled(programmingState == 0)
                     
-                    MButton(text: "Continue",
-                            isFullWidth: false,
-                            textColor : Color(.white),
-                            background:  Color("primaryOrange"),
-                            action: {
-                        if programmingState == 3 {
-                            moveNextScreen = true
-                        } else {
-                            programmingState += 1
-                            progressValue += 0.25
-                        }
                     
-
-                    
-                     }
-                    ).background(
-                        NavigationLink(isActive: $moveNextScreen, destination: {
-                            chooseDestination()
-                        }, label: {
-                            EmptyView()
-                        })
-                    )
+                    NavigationLink(isActive: $moveNextScreen, destination: {
+                        chooseDestination()
+                    }, label: {
+                        MButton(text: "Continue",
+                                isFullWidth: false,
+                                textColor : Color(.white),
+                                background:  Color("primaryOrange"),
+                                action: {
+                            if programmingState == 3 {
+                                moveNextScreen = true
+                            } else {
+                                programmingState += 1
+                                progressValue += 0.25
+                            }
+                         }
+                        )
+                    })
+                  
 
                 }
                 
-//                ini text untuk placeholder aja untuk check scorenya masuk atau ngga , nantinya akan di remove text ini
                 Text("Score \(userScore.scoreProgramming)")
                     .padding(.leading, 150)
                 
@@ -113,14 +112,16 @@ struct ProgrammingView: View {
             }
             
         }
-        
+        .onDisappear {
+                       mingoGatePosition = .zero
+                   }
         
     }
 }
 
 struct ProgrammingView_Previews: PreviewProvider {
     static var previews: some View {
-        ProgrammingView()
+        ProgrammingView(mingoGatePosition: .constant(.zero))
     }
 }
 

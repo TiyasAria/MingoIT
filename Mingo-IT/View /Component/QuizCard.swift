@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LaTeXSwiftUI
 
 enum QuizType {
     case multipleChoice, fillTheBlank, drag
@@ -51,17 +52,17 @@ struct QuizCard: View {
                         if isExplain {
                             Group {
                                 if title != nil {
-                                    Text(title!)
+                                   LaTeX(title!)
                                 }
                                 
                                 Text("Explanation")
                                     .font(.headline)
                                 
-                                Text(explanation)
+                                LaTeX(explanation)
                             }
                         }else {
                             if title != nil {
-                                Text(title!)
+                                LaTeX(title!)
                             }
                             
                             switch quizType {
@@ -164,7 +165,9 @@ struct QuizCard: View {
                                     
                                     
                                     isPassed = isCorrect
-                                  
+                                    userManager.isDoneQuestionOne = true
+                                    userManager.isDoneQuestionTwo = true
+                                    userManager.isDoneQuestionThree = true
 
                                 }
 //                                 update score 
@@ -187,9 +190,7 @@ struct QuizCard: View {
                                 
                                 
                             }
-                            userManager.isDoneQuestionOne = true
-                            userManager.isDoneQuestionTwo = true
-                            userManager.isDoneQuestionThree = true
+                          
                         }.disabled(isSubmitted)
                     }
                     .offset(y: 20)

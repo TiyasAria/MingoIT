@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LogicView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @Binding var mingoGatePosition: CGPoint
 
     var body: some View {
         NavigationStack{
@@ -34,6 +35,6 @@ struct LogicView: View {
 
 struct LogicView_Previews: PreviewProvider {
     static var previews: some View {
-        LogicView()
+        LogicView(mingoGatePosition: .constant(.zero))
     }
 }

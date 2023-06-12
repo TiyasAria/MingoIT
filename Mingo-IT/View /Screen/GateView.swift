@@ -16,6 +16,10 @@ struct GateView: View {
     @State private var showCoachMark = true
     @State private var isFinished = false
     
+    //     for animation
+    @State private var mingoGatePosition: CGPoint = .zero
+    @State private var selectedButton: String = ""
+    
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     
@@ -30,7 +34,7 @@ struct GateView: View {
         if userInteraction.isFirstLaunchProgramming {
             ExplanationLessonScreen(explanation: dataLesson[0])
         } else {
-            ProgrammingView()
+            ProgrammingView(mingoGatePosition: $mingoGatePosition)
         }
         
     }
@@ -41,7 +45,7 @@ struct GateView: View {
         if userInteraction.isFirstLaunchLogic {
             ExplanationLessonScreen(explanation: dataLesson[1])
         } else {
-            LogicView()
+            LogicView(mingoGatePosition: $mingoGatePosition)
         }
         
     }
@@ -52,7 +56,7 @@ struct GateView: View {
         if userInteraction.isFirstLaunchMath {
             ExplanationLessonScreen(explanation: dataLesson[2])
         } else {
-            MathematicsView()
+            MathematicsView(mingoGatePosition: $mingoGatePosition)
         }
         
     }
@@ -63,7 +67,7 @@ struct GateView: View {
         if userInteraction.isFirstLaunchDesign {
             ExplanationLessonScreen(explanation: dataLesson[3])
         } else {
-            UIUXView()
+            UIUXView(mingoGatePosition: $mingoGatePosition)
         }
         
     }
@@ -74,6 +78,7 @@ struct GateView: View {
                 Image("groundGate")
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
+             
                 
                 GeometryReader { geometry in
                     Image("underbuildingGate")
@@ -82,11 +87,14 @@ struct GateView: View {
                         .frame(width: geometry.size.width)
                 }
                 
+               
                 GeometryReader { geometry in
                     Image("stairsGate")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: geometry.size.width)
+                    
+                   
                 }
                 
                 GeometryReader { geometry in
@@ -97,6 +105,14 @@ struct GateView: View {
                     } else {
                         closedGateImage(width: geometry.size.width)
                     }
+                    
+                    NavigationLink(destination: {
+                        HomeScreen()
+                    }, label: {
+                        Image("back")
+                            .padding(.leading, 20)
+                        .padding(.top, 30)
+                    })
                 }
                 
                 VStack(spacing: 70) {
@@ -114,7 +130,17 @@ struct GateView: View {
                             
                             buildingButton(action: {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                    shouldNavigateToLogicView = true
+                                    selectedButton = "logic"
+                                    withAnimation(.easeOut(duration: 0.5)){
+                                        mingoGatePosition = CGPoint(x: mingoGatePosition.x - 120, y: mingoGatePosition.y)
+                                    }
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        shouldNavigateToLogicView = true
+                                    }
+                                }
+                                withAnimation(.easeInOut(duration: 0.5)){
+                                    mingoGatePosition = CGPoint(x: mingoGatePosition.x, y: mingoGatePosition.y - 200)
                                 }
                                 userScore.scoreLogic = 0
                             }, text: "LOGICAL THINKING")
@@ -133,8 +159,19 @@ struct GateView: View {
                             
                             buildingButton(action: {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                    shouldNavigateToUIUXView = true
+                                    selectedButton = "design"
+                                    withAnimation(.easeInOut(duration: 0.5)){
+                                        mingoGatePosition = CGPoint(x: mingoGatePosition.x + 120, y: mingoGatePosition.y)
+                                    }
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        shouldNavigateToUIUXView = true
+                                    }
                                 }
+                                withAnimation(.easeInOut(duration: 0.5)){
+                                                              mingoGatePosition = CGPoint(x: mingoGatePosition.x, y: mingoGatePosition.y - 200)
+                                                          }
+                                
                                 userScore.scoreDesign = 0
                             }, text: "UI/UX DESIGN")
                         }
@@ -154,7 +191,13 @@ struct GateView: View {
                             
                             buildingButton(action: {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    //                                     add this for animation
+                                    selectedButton = "programming"
                                     shouldNavigateToProgrammingView = true
+                                }
+                                
+                                withAnimation(.easeInOut(duration: 0.5)){
+                                    mingoGatePosition = CGPoint(x: -120, y: 0)
                                 }
                                 userScore.scoreProgramming = 0
                             }, text: "PROGRAMMING")
@@ -173,8 +216,12 @@ struct GateView: View {
                             
                             buildingButton(action: {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    shouldNavigateToMathematicsView = true
+                                    selectedButton = "math"
+                                                                   shouldNavigateToMathematicsView = true
                                 }
+                                withAnimation(.easeInOut(duration: 0.5)){
+                                                             mingoGatePosition = CGPoint(x: 120, y: 0)
+                                                         }
                                 userScore.scoreMath = 0
                             }, text: "MATHEMATICS")
                         }
@@ -232,8 +279,7 @@ struct GateView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 40)
-                        .position(x: geometry.size.width/2, y: geometry.size.height*2/2.9)
-                }
+                    .position(x: geometry.size.width/2 + mingoGatePosition.x, y: geometry.size.height*2/2.9 + mingoGatePosition.y)                }
                 
                 if showCoachMark {
                     CoachMark(isFinished: $isFinished).opacity(no_coachmark ? 0 : 1).animation(.easeInOut)
@@ -242,12 +288,11 @@ struct GateView: View {
             }
             .navigationBarBackButtonHidden(true)
             .toolbar(.hidden, for: .tabBar)
-            .navigationBarItems(leading: Button(
-                action : {
-                    self.mode.wrappedValue.dismiss()
-                }){
-                    Image("back")
-                })
+//            .navigationBarItems(leading: Button(
+//                action : {
+//                    self.mode.wrappedValue.dismiss()
+//                }){
+//                })
             
         }
         
@@ -261,16 +306,16 @@ struct GateView: View {
         
         return Button(action: action) {
             VStack {
-//                ZStack {
-//                    Image("progressBubble")
-//
-//                    Text("Score \(userScore.scoreProgramming)")
-//                        .font(.custom("SFProRounded-Bold", size: 10))
-//                        .foregroundColor(.white)
-//                        .padding(.bottom,10)
-//
-//                }
-//
+                //                ZStack {
+                //                    Image("progressBubble")
+                //
+                //                    Text("Score \(userScore.scoreProgramming)")
+                //                        .font(.custom("SFProRounded-Bold", size: 10))
+                //                        .foregroundColor(.white)
+                //                        .padding(.bottom,10)
+                //
+                //                }
+                //
                 ZStack {
                     buildingImage
                         .resizable()

@@ -28,8 +28,8 @@
 		57421EBB2A327672004B254B /* InputNameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57421EBA2A327672004B254B /* InputNameScreen.swift */; };
 		57421EBD2A3276D0004B254B /* BackgroundStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57421EBC2A3276D0004B254B /* BackgroundStoryView.swift */; };
 		57421EBF2A3278FE004B254B /* DisclaimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57421EBE2A3278FE004B254B /* DisclaimerView.swift */; };
-		577BFDC72A33FAD300DD369B /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BFDC62A33FAD300DD369B /* Quiz.swift */; };
 		577BFDC92A33FD5C00DD369B /* ProgressbarQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577BFDC82A33FD5C00DD369B /* ProgressbarQuiz.swift */; };
+		57860A942A36DE5800C95743 /* LaTeXSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 57860A932A36DE5800C95743 /* LaTeXSwiftUI */; };
 		57B632472A30A2B500DE7B04 /* Username.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B632462A30A2B500DE7B04 /* Username.swift */; };
 		57B632492A30AC0400DE7B04 /* LevelPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B632482A30AC0400DE7B04 /* LevelPageView.swift */; };
 		57B6324D2A30B0E300DE7B04 /* RoundedCornerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6324C2A30B0E300DE7B04 /* RoundedCornerItem.swift */; };
@@ -47,7 +47,6 @@
 		8C33A6822A2CA3C70000A067 /* CompleteLessonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3E96E22A2C33C3006B13B4 /* CompleteLessonScreen.swift */; };
 		8C33A6832A2CA3CF0000A067 /* IncompleteLessonScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3E96E42A2C378E006B13B4 /* IncompleteLessonScreen.swift */; };
 		8C54016D2A2D874500AF5603 /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C54016C2A2D874500AF5603 /* ProfileScreen.swift */; };
-		8C54016F2A2D891B00AF5603 /* RoundCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C54016E2A2D891B00AF5603 /* RoundCorner.swift */; };
 		8C5401732A2D97BD00AF5603 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5401722A2D97BD00AF5603 /* ProgressBar.swift */; };
 		8C5840432A2F7A0800A0BD19 /* QuizCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5840422A2F7A0800A0BD19 /* QuizCard.swift */; };
 		8C5840452A2F7C1000A0BD19 /* RadioButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5840442A2F7C1000A0BD19 /* RadioButtonGroup.swift */; };
@@ -76,7 +75,6 @@
 		57421EBA2A327672004B254B /* InputNameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputNameScreen.swift; sourceTree = "<group>"; };
 		57421EBC2A3276D0004B254B /* BackgroundStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundStoryView.swift; sourceTree = "<group>"; };
 		57421EBE2A3278FE004B254B /* DisclaimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerView.swift; sourceTree = "<group>"; };
-		577BFDC62A33FAD300DD369B /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		577BFDC82A33FD5C00DD369B /* ProgressbarQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressbarQuiz.swift; sourceTree = "<group>"; };
 		57B632462A30A2B500DE7B04 /* Username.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Username.swift; sourceTree = "<group>"; };
 		57B632482A30AC0400DE7B04 /* LevelPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelPageView.swift; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 		8C3E96E22A2C33C3006B13B4 /* CompleteLessonScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteLessonScreen.swift; sourceTree = "<group>"; };
 		8C3E96E42A2C378E006B13B4 /* IncompleteLessonScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncompleteLessonScreen.swift; sourceTree = "<group>"; };
 		8C54016C2A2D874500AF5603 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
-		8C54016E2A2D891B00AF5603 /* RoundCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCorner.swift; sourceTree = "<group>"; };
 		8C5401722A2D97BD00AF5603 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		8C5840422A2F7A0800A0BD19 /* QuizCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizCard.swift; sourceTree = "<group>"; };
 		8C5840442A2F7C1000A0BD19 /* RadioButtonGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonGroup.swift; sourceTree = "<group>"; };
@@ -107,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57860A942A36DE5800C95743 /* LaTeXSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				57D3DE1B2A2CDE5200EC774D /* DataExplanationLesson.swift */,
-				577BFDC62A33FAD300DD369B /* Quiz.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -144,7 +141,6 @@
 			children = (
 				8C33A67D2A2CA3780000A067 /* MButton.swift */,
 				57B6324C2A30B0E300DE7B04 /* RoundedCornerItem.swift */,
-				8C54016E2A2D891B00AF5603 /* RoundCorner.swift */,
 				8C5401722A2D97BD00AF5603 /* ProgressBar.swift */,
 				8C5840422A2F7A0800A0BD19 /* QuizCard.swift */,
 				8C5840442A2F7C1000A0BD19 /* RadioButtonGroup.swift */,
@@ -261,6 +257,9 @@
 			dependencies = (
 			);
 			name = "Mingo-IT";
+			packageProductDependencies = (
+				57860A932A36DE5800C95743 /* LaTeXSwiftUI */,
+			);
 			productName = "Mingo-IT";
 			productReference = 8C1BBCCF2A26FDFE007090F3 /* Mingo-IT.app */;
 			productType = "com.apple.product-type.application";
@@ -289,6 +288,9 @@
 				Base,
 			);
 			mainGroup = 8C1BBCC62A26FDFE007090F3;
+			packageReferences = (
+				57860A922A36DE5800C95743 /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */,
+			);
 			productRefGroup = 8C1BBCD02A26FDFE007090F3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -334,7 +336,6 @@
 				57421EBF2A3278FE004B254B /* DisclaimerView.swift in Sources */,
 				57B632492A30AC0400DE7B04 /* LevelPageView.swift in Sources */,
 				8C33A6822A2CA3C70000A067 /* CompleteLessonScreen.swift in Sources */,
-				577BFDC72A33FAD300DD369B /* Quiz.swift in Sources */,
 				05DF57612A3330E200D3907C /* UIUXView.swift in Sources */,
 				572B07372A2C39A200E341A1 /* HomeScreen.swift in Sources */,
 				57D3DE1C2A2CDE5200EC774D /* DataExplanationLesson.swift in Sources */,
@@ -345,7 +346,6 @@
 				8C11D4E02A31BF8000E5FCCF /* DragAndDrop.swift in Sources */,
 				8C33A67E2A2CA3780000A067 /* MButton.swift in Sources */,
 				57421EBB2A327672004B254B /* InputNameScreen.swift in Sources */,
-				8C54016F2A2D891B00AF5603 /* RoundCorner.swift in Sources */,
 				8C33A6822A2CA3C70000A067 /* CompleteLessonScreen.swift in Sources */,
 				57421EBD2A3276D0004B254B /* BackgroundStoryView.swift in Sources */,
 				05DF57632A3330E200D3907C /* Level2View.swift in Sources */,
@@ -561,6 +561,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		57860A922A36DE5800C95743 /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/colinc86/LaTeXSwiftUI.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		57860A932A36DE5800C95743 /* LaTeXSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57860A922A36DE5800C95743 /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */;
+			productName = LaTeXSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8C1BBCC72A26FDFE007090F3 /* Project object */;
 }
