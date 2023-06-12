@@ -79,7 +79,7 @@ struct QuizCard: View {
                                         Text("\(question![0]) ")
                                         + Text(userAnswer != "" ? "\(userAnswer)" : " ____ ")
                                             .bold()
-                                        + Text(" \(question![0])")
+                                        + Text(" \(question![2])")
                                     }
                                     .onTapGesture {
                                         isEditing = true
