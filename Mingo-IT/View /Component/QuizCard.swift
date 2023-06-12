@@ -18,6 +18,7 @@ enum QuizMaterial {
 struct QuizCard: View {
     let materialType : QuizMaterial
     
+    @Binding var userAnswer: String
     @Binding var isTry : Bool
     @Binding var isPassed: Bool
     var score = 0
@@ -27,9 +28,9 @@ struct QuizCard: View {
     @State private var isCorrect = false
     @State private var isInCorrect = false
     @State private var isTypeing = false
-    @State private var userAnswer: String = ""
     @State private var isEditing:Bool = false
     @State private var userAnswerDrag: [String] = [String]()
+    @State private var selectedId: String = ""
 
     @StateObject private var userScore = ScoreManager()
     @StateObject private var userManager = UserManager()
@@ -66,7 +67,7 @@ struct QuizCard: View {
                             
                             switch quizType {
                             case .multipleChoice:
-                                RadioButtonGroup(isTrue: $isCorrect, isSelected: $isSelected, items: items, selectedId: "") { selected in
+                                RadioButtonGroup(isTrue: $isCorrect, isSelected: $isSelected, items: items, selectedId: $selectedId) { selected in
                                     userAnswer = selected
                                     
                                 }
@@ -130,7 +131,8 @@ struct QuizCard: View {
                           
                             if !isExplain {
                                 isSelected = true
-                               
+                                selectedId = userAnswer
+                                
                                 switch quizType {
                                 case .drag:
                                     var userAnswerContainer: [String] = userAnswerDrag
@@ -138,11 +140,6 @@ struct QuizCard: View {
                                     
                                     answer = itemAnswers.joined()
                                     userAnswer = userAnswerContainer.joined()
-                                   
-                                    print("kunci")
-                                    print(answer)
-                                    print("jawaban")
-                                    print(userAnswer)
                                 case .fillTheBlank:
                                     answer = question![1]
                                    
@@ -163,7 +160,7 @@ struct QuizCard: View {
                                     }
                                     
                                     
-                                    isPassed = isCorrect
+//                                    isPassed = isCorrect
                                   
 
                                 }
@@ -194,6 +191,33 @@ struct QuizCard: View {
                     }
                     .offset(y: 20)
                 }
+                .onAppear {
+                        if userAnswer != "" {
+                            switch quizType {
+                            case .multipleChoice:
+                                isSelected = true
+                                selectedId = answer
+                                
+                            case .fillTheBlank:
+                                answer = question![1]
+                                
+                            case .drag:
+                                break
+                            }
+                            
+                            if quizType != .drag {
+                                isSubmitted = true
+                               
+                                if userAnswer.lowercased() == answer.lowercased() {
+                                    isCorrect = true
+                                    isInCorrect = false
+                                }else {
+                                    isCorrect = false
+                                    isInCorrect = true
+                                }
+                            }
+                        }
+                }
                 .frame(width: 280)
                 .padding(30)
                 .background(isCorrect ? Color("backgroundCardTrue") :
@@ -207,3 +231,18 @@ struct QuizCard: View {
             }
         }
 }
+
+
+//struct Ree: PreviewProvider {
+//    static var previews: some View {
+//        QuizCard(
+//                materialType: .programming,
+////                isPassed: false,
+//                title: "What exactly Algorithm is?",
+//                answer: "A sets of Instructions",
+//                items: ["A sets of command", "A sets of Instructions", "A sets for making tea"],
+//                explanation: "Algorithms are sets of instructions of what steps to take to complete a task or solve a problem.",
+//                quizType: .multipleChoice
+//            )
+//    }
+//}

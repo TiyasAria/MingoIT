@@ -10,6 +10,9 @@ import SwiftUI
 struct ProgrammingView: View {
     @AppStorage("progressValue") private var progressValue : Double  = 0.25
     @AppStorage("programmingState") private var programmingState = 0
+    @AppStorage("userAnswerDrag") var userAnswerDrag = ""
+    @AppStorage("userAnswerFill") var userAnswerFill = ""
+    @AppStorage("userAnswerChoice") var userAnswerChoice = ""
     @State private var moveNextScreen  = false
     @StateObject private var userData = UserManager()
     @StateObject private var userScore = ScoreManager()
@@ -153,8 +156,9 @@ extension ProgrammingView {
             .font(.custom("SFProRounded-light", size: 20))
                         
             QuizCard(
-                
+
                 materialType: .programming,
+                userAnswer: $userAnswerChoice,
                 isTry: $userData.isDoneQuestionOne,
                 isPassed: $quizOnePassed,
                 title: "What exactly Algorithm is?",
@@ -175,6 +179,7 @@ extension ProgrammingView {
             
             QuizCard(
                 materialType: .programming,
+                userAnswer: $userAnswerFill,
                 isTry: $userData.isDoneQuestionTwo,
 
                 isPassed: $quizTwoPassed,
@@ -206,6 +211,7 @@ extension ProgrammingView {
             
             QuizCard(
                 materialType: .programming,
+                userAnswer: $userAnswerDrag,
                 isTry: $userData.isDoneQuestionThree,
 
                 isPassed: $quizThreePassed,

@@ -88,6 +88,15 @@ struct DragAndDrop: View {
                 }
             }
         }
+        .onAppear {
+            if userAnswer.count > 0 {
+                for i in 0..<userAnswer.count - 1 {
+                    objectsReceived[i][0] = userAnswer[i]
+                }
+                
+                items = [String]()
+            }
+        }
     }
 }
 

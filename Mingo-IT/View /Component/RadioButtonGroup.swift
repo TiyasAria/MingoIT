@@ -61,7 +61,7 @@ struct RadioButton: View {
             self.callback(self.id)
         }) {
             HStack(alignment: .center, spacing: 10) {
-                Image(systemName: self.selectedID == self.id ? "largecircle.fill.circle" : "circle")
+                Image(systemName: self.selectedID.lowercased() == self.id.lowercased() ? "largecircle.fill.circle" : "circle")
                     .renderingMode(.original)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -77,7 +77,12 @@ struct RadioButton: View {
                               : self.color)
         }
         .foregroundColor(self.color)
+        .onAppear {
+            
+                let _ = print(self.selectedID)
+        }
     }
+    
 }
 
 
@@ -87,7 +92,7 @@ struct RadioButtonGroup: View {
 
     let items : [String]
 
-    @State var selectedId: String = ""
+    @Binding var selectedId: String
 
     let callback: (String) -> ()
 

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LessonScreen: View {
+    @AppStorage("userAnswer") var userAnswer = ""
 
     @State private var progress: Float = 0.5
     @State private var backToGate = false
@@ -57,7 +58,7 @@ struct LessonScreen: View {
 //                    )
                     
 //                    QuizCard(
-//                        materialType: .programming,
+//                        materialType: .programming, userAnswer: $userAnswer,
 //                        isPassed: $quizTwoPassed,
 //                        question: [
 //                            "An algorithm is a set of step-by-step",
@@ -70,7 +71,7 @@ struct LessonScreen: View {
 //
 //                    QuizCard(
 //                        materialType: .programming,
-//                        isPassed: $quizThreePassed,
+//                        userAnswer: $userAnswer,
 //                        title: "What exactly Algorithm is?",
 //                        answer: "A sets of Instructions",
 //                        items: ["A sets of command", "A sets of Instructions", "A sets for making tea"],
