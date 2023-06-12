@@ -223,6 +223,7 @@ extension ProgrammingView {
             
             QuizCard(
                 materialType: .programming,
+                userAnswer: $userAnswerFill,
                 isTry: $userData.isDoneQuestionTwo,
 
                 isPassed: $quizTwoPassed,
@@ -239,6 +240,7 @@ extension ProgrammingView {
             QuizCard(
                 
                 materialType: .programming,
+                userAnswer: $userAnswerChoice,
                 isTry: $userData.isDoneQuestionThree,
                 isPassed: $quizOnePassed,
                 title: "Which quote we used to print a string text?",

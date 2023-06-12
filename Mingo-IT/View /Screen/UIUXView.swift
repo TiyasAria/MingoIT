@@ -10,6 +10,9 @@ import SwiftUI
 struct UIUXView: View {
     @AppStorage("progressDesign") private var progressValueDesign : Double  = 0.125
     @AppStorage("designState") private var designState = 0
+    @AppStorage("userDesignAnswerChoice1") var userDesignAnswerChoice1 = ""
+    @AppStorage("userDesignAnswerChoice2") var userDesignAnswerChoice2 = ""
+    @AppStorage("userDesignAnswerChoice3") var userDesignAnswerChoice3 = ""
     @State private var moveNextScreen  = false
     @StateObject private var userData = UserManager()
     @StateObject private var userScore = ScoreManager()
@@ -326,6 +329,7 @@ extension UIUXView {
             QuizCard(
                 
                 materialType: .design,
+                userAnswer: $userDesignAnswerChoice1,
                 isTry: $userData.isDoneQuestionOne,
                 isPassed: $quizOnePassed,
                 title: "What is the difference between UI (User Interface) and UX (User Experience)?",
@@ -338,6 +342,7 @@ extension UIUXView {
             QuizCard(
                 
                 materialType: .design,
+                userAnswer: $userDesignAnswerChoice2,
                 isTry: $userData.isDoneQuestionTwo,
                 isPassed: $quizTwoPassed,
                 title: "Which of the following design considerations is NOT typically associated with creating an effective user interface (UI)?",
@@ -349,6 +354,7 @@ extension UIUXView {
             QuizCard(
                 
                 materialType: .design,
+                userAnswer: $userDesignAnswerChoice3,
                 isTry: $userData.isDoneQuestionThree,
                 isPassed: $quizThreePassed,
                 title: "Which of the following tasks are typically involved in the UX design process?",

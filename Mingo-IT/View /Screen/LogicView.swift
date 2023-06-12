@@ -10,6 +10,10 @@ import SwiftUI
 struct LogicView: View {
     @AppStorage("progressValueLogic") private var progressValueLogic : Double  = 0.25
     @AppStorage("logicState") private var logicState = 0
+    @AppStorage("userLogicAnswerChoice") var userLogicAnswerChoice = ""
+    @AppStorage("userLogicAnswerFill") var userLogicAnswerFill = ""
+    @AppStorage("userLogicAnswerDrag") var userLogicAnswerDrag = ""
+    
     @State private var moveNextScreen  = false
     @StateObject private var userData = UserManager()
     @StateObject private var userScore = ScoreManager()
@@ -147,6 +151,7 @@ extension LogicView {
             QuizCard(
                 
                 materialType: .logic,
+                userAnswer: $userLogicAnswerChoice,
                 isTry: $userData.isDoneQuestionOne,
                 isPassed: $quizOnePassed,
                 title: "What exactly Algorithm is?",
@@ -167,6 +172,7 @@ extension LogicView {
             
             QuizCard(
                 materialType: .logic,
+                userAnswer: $userLogicAnswerFill,
                 isTry: $userData.isDoneQuestionTwo,
 
                 isPassed: $quizTwoPassed,
@@ -198,6 +204,7 @@ extension LogicView {
             
             QuizCard(
                 materialType: .logic,
+                userAnswer: $userLogicAnswerDrag,
                 isTry: $userData.isDoneQuestionThree,
 
                 isPassed: $quizThreePassed,

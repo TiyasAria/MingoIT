@@ -10,6 +10,9 @@ import SwiftUI
 struct MathematicsView: View {
     @AppStorage("progressValueMath") private var progressValueMath : Double  = 0.167
     @AppStorage("mathState") private var mathematicState = 0
+    @AppStorage("userMathAnswerChoice1") var userMathAnswerChoice1 = ""
+    @AppStorage("userMathAnswerChoice2") var userMathAnswerChoice2 = ""
+    @AppStorage("userMathAnswerChoice3") var userMathAnswerChoice3 = ""
     @State private var moveNextScreen  = false
     @StateObject private var userData = UserManager()
     @StateObject private var userScore = ScoreManager()
@@ -267,6 +270,7 @@ extension MathematicsView {
         VStack(spacing: 24){
             QuizCard(
                 materialType: .mathematic,
+                userAnswer: $userMathAnswerChoice1,
                 isTry: $userData.isDoneQuestionOne,
                 isPassed: $quizOnePassed,
                 title: "$$\\lim\\limits_{x \to 2} \\frac{x^{2}-3x+2}{x-1}=$$",
@@ -278,6 +282,7 @@ extension MathematicsView {
             
             QuizCard(
                 materialType: .mathematic,
+                userAnswer: $userMathAnswerChoice2,
                 isTry: $userData.isDoneQuestionTwo,
                 isPassed: $quizOnePassed,
                 title: "$$\\lim \\limits_{x \to 2} \\frac{2x^{2}-x-6}{3x^{2}-5x-2}=$$",
@@ -289,6 +294,7 @@ extension MathematicsView {
             
             QuizCard(
                 materialType: .mathematic,
+                userAnswer: $userMathAnswerChoice3,
                 isTry: $userData.isDoneQuestionThree,
                 isPassed: $quizOnePassed,
                 title: "$$\\lim\\limits_{x \to 3} \\frac{(x-3)(\\sqrt{x}+\\sqrt{3})}{(\\sqrt{x}-\\sqrt{3})}=$$",
