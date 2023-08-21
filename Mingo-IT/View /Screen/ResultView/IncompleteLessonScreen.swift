@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct IncompleteLessonScreen : View {
-//    let previousScreenType : PreviousScreen.Type
     let materialType  : QuizMaterial
-    
-    @StateObject var userData = ScoreManager()
+    @EnvironmentObject private var scoreUser : ScoreManager
     @State var isActive = false
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject private var lessonViewModel : LessonViewModel
 
     var body: some View {
         NavigationStack {
@@ -36,13 +35,13 @@ struct IncompleteLessonScreen : View {
                     Image(systemName: "desktopcomputer")
                     switch materialType{
                     case .programming :
-                        Text("Programming + \(userData.scoreProgramming)")
+                        Text("Programming + \(scoreUser.scoreProgramming)")
                     case .logic :
-                        Text("Logic + \(userData.scoreLogic)")
+                        Text("Logic + \(scoreUser.scoreLogic)")
                     case .mathematic :
-                        Text("Mathematic + \(userData.scoreMath)")
+                        Text("Mathematic + \(scoreUser.scoreMath)")
                     case .design :
-                        Text("Design + \(userData.scoreDesign)")
+                        Text("Design + \(scoreUser.scoreDesign)")
                     default :
                         Text("")
                     }
@@ -61,7 +60,6 @@ struct IncompleteLessonScreen : View {
                 VStack(spacing: -20) {
                     MButton(text: "Try Again", isFullWidth: true, background: Color("primaryBlue")) {
                         presentationMode.wrappedValue.dismiss()
-
                     }
                     
                     NavigationLink(isActive: $isActive, destination: {
@@ -77,9 +75,3 @@ struct IncompleteLessonScreen : View {
         }
     }
 }
-
-//struct IncompleteLessonView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        IncompleteLessonScreen()
-//    }
-//}

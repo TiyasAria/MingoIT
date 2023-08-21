@@ -10,7 +10,6 @@ import SwiftUI
 struct ProfileScreen: View {
     @StateObject private var userManager = UserManager()
     
-
     @Binding var programmingProgress: Float
     @Binding var logicProgress: Float
     @Binding var mathProgress: Float
@@ -27,7 +26,7 @@ struct ProfileScreen: View {
                     .frame(height: 130)
                 Text("Profile")
                     .foregroundColor(.white)
-                    .font(.custom("SFProRounded-Bold", size: 32))
+                    .font(.system(size: 32, weight: .bold , design: .rounded))
                 
             }
             .clipShape(RoundedCornerItem(radius: 30, corners: [.bottomLeft, .bottomRight]))
@@ -139,13 +138,9 @@ struct ProfileScreen: View {
             .offset(y: -25)
             
             Spacer()
-            
-           
         }
         .background(.white)
         .ignoresSafeArea()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-//            .offset(y: 0.1)
-        
     }
 }

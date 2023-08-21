@@ -26,7 +26,7 @@ struct DisclaimerView: View {
                                     .opacity(0.25)
                             )
                         Text("Hello , Welcome to Mingo . This application is designed with the aim of providing a learning simulation of the world of lectures.\n\nHowever, please note that the app does not replace actual university education or guarantee real-life outcomes.")
-                            .font(.custom("SFProRounded-Reguler", size: 18))
+                            .font(.system(size: 18, weight: .regular, design: .rounded))
                             .offset(x: 10)
                             .foregroundColor(.white)
                             .frame(width: 275.0)

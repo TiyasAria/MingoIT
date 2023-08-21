@@ -10,82 +10,62 @@ import SwiftUI
 
 struct InputNameScreen: View {
     
-    @State var currentUser : String   = ""
+    @EnvironmentObject var userManager : UserManager
     @State private var isShowingNextScreen : Bool = false
-    @StateObject private var userManager = UserManager()
-    @StateObject private var userScore = ScoreManager()
-    
-    
     
     var body: some View {
         NavigationStack {
             VStack(alignment: .center){
-                Group {
+                VStack{
                     Text("Hello")
-                        .font(.custom("SFProRounded-Medium", size: 24))
+                        .font(.system(size: 24 , weight: .medium, design: .rounded))
                         .foregroundColor(Color("darkBlue"))
                     
                     Text("What is Your Name?")
-                        .font(.custom("SFProRounded-Bold", size: 32))
+                        .font(.system(size: 32 , weight: .bold, design: .rounded))
                         .foregroundColor(Color("darkBlue"))
                         .padding(.bottom, 40)
                     
                     TextField("Insert Your Name Here"
-                              , text: $currentUser)
+                              , text: $userManager.currentUser)
                     .padding(.horizontal, 30)
                     .padding(.vertical , 20 )
                     .background(
                         RoundedRectangle(cornerRadius: 30)
                             .stroke(Color("borderCard"), lineWidth: 1)
                     )
-                   
+                    
                     Spacer()
                     Image("ilustrasi_ input_name")
                     Spacer()
                 }
                 .padding(.horizontal , 24)
-  
+                
                 
                 NavigationLink(isActive: $isShowingNextScreen) {
                     BackgroundStoryView().navigationBarBackButtonHidden(true)
                 } label: {
                     MButton(text: "Next",
                             isFullWidth: true,
-                            textColor :(currentUser.isEmpty) ? Color("textDisabled") : Color(.white),
-                            background: (currentUser.isEmpty) ? Color("greyButtonDisabled") : Color("primaryOrange"),
+                            textColor :(userManager.currentUser.isEmpty) ? Color("textDisabled") : Color(.white),
+                            background: (userManager.currentUser.isEmpty) ? Color("greyButtonDisabled") : Color("primaryOrange"),
                             action: {
-                        isShowingNextScreen = true
-                        signIn()
+                                isShowingNextScreen = true
+                                userManager.signIn()
                             }
-                            
                     )
-                 
                 }
-                .disabled(currentUser.isEmpty)
-
-                
-                
+                .disabled(userManager.currentUser.isEmpty)
             }
             .padding(.vertical, 30)
             .navigationBarBackButtonHidden(true)
         }
-    }
-    
-    func signIn(){
-        userManager.currentUsername = currentUser
-        userManager.isFirstLaunchDesign = true
-        userManager.isFirstLaunchProgramming = true
-        userManager.isFirstLaunchMath = true
-        userManager.isFirstLaunchLogic = true
-        userScore.scoreDesign = 0
-        userScore.scoreMath = 0
-        userScore.scoreLogic = 0
-        userScore.scoreProgramming = 0
     }
 }
 
 struct InputNameScreen_Previews: PreviewProvider {
     static var previews: some View {
         InputNameScreen()
+            .environmentObject(UserManager())
     }
 }

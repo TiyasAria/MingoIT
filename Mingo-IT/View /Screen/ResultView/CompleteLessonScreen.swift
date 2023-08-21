@@ -8,12 +8,10 @@
 import SwiftUI
 
 struct CompleteLessonScreen : View {
-//    let previousScreenType : PreviousScreen.Type
     let materialType  : QuizMaterial
-
     @State private var isActive = false
-    @StateObject var userData = ScoreManager()
-    
+    @EnvironmentObject private var scoreUser : ScoreManager
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -35,13 +33,13 @@ struct CompleteLessonScreen : View {
                     Image(systemName: "desktopcomputer")
                     switch materialType{
                     case .programming :
-                        Text("Programming + \(userData.scoreProgramming)")
+                        Text("Programming + \(scoreUser.scoreProgramming)")
                     case .logic :
-                        Text("Logic + \(userData.scoreLogic)")
+                        Text("Logic + \(scoreUser.scoreLogic)")
                     case .mathematic :
-                        Text("Mathematic + \(userData.scoreMath)")
+                        Text("Mathematic + \(scoreUser.scoreMath)")
                     case .design :
-                        Text("Design + \(userData.scoreDesign)")
+                        Text("Design + \(scoreUser.scoreDesign)")
                     default :
                         Text("")
                     }
@@ -68,9 +66,3 @@ struct CompleteLessonScreen : View {
         .navigationBarHidden(true)
     }
 }
-
-//struct CompleteLessonView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CompleteLessonScreen<PreviousScreen: View>(previousScreenType: LogicView.self)
-//    }
-//}

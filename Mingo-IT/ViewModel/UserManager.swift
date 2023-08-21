@@ -18,10 +18,11 @@ class UserManager  : ObservableObject {
     @AppStorage("isFirstLaunchProgramming") var isFirstLaunchProgramming = true
     @AppStorage("isFirstLaunchLogic") var isFirstLaunchLogic = true
 //     have you try answer the question
-    @AppStorage("doneQuetion1") var isDoneQuestionOne : Bool = false
-    @AppStorage("doneQuetion2") var isDoneQuestionTwo : Bool = false
-    @AppStorage("doneQuetion3") var isDoneQuestionThree : Bool = false
-    
+    @AppStorage("doneQuestion1") var isDoneQuestionOne : Bool = false
+    @AppStorage("doneQuestion2") var isDoneQuestionTwo : Bool = false
+    @AppStorage("doneQuestion3") var isDoneQuestionThree : Bool = false
+
+ 
 //     logic for signIn User
     private var scoreManager = ScoreManager()
     

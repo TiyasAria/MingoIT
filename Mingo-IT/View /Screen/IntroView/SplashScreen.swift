@@ -10,7 +10,7 @@ import SwiftUI
 struct SplashScreen: View {
     
     @State var isActive : Bool = false
-    @StateObject private var userManager = UserManager()
+    @EnvironmentObject private var userManager : UserManager
 
     var body: some View {
         ZStack{
@@ -29,7 +29,7 @@ struct SplashScreen: View {
                 VStack {
                     Image("Mingo Icon")
                     Text("Mingo IT")
-                        .font(.custom("SFProRounded-Bold", size: 48))
+                        .font(.system(size: 48 , weight: .bold , design: .rounded))
                         .foregroundColor(Color("darkBlue"))
                 }
                 .padding(.top, 30)
@@ -48,5 +48,6 @@ struct SplashScreen: View {
 struct SplashScreen_Previews: PreviewProvider {
     static var previews: some View {
         SplashScreen()
+            .environmentObject(UserManager())
     }
 }

@@ -15,8 +15,6 @@ struct LevelPageView: View {
     @State var currentLevel = 0
     @State private  var isShowNextScreen = false
     
-    
-    
     var body: some View {
         NavigationStack {
             VStack(alignment: .center){
@@ -26,33 +24,27 @@ struct LevelPageView: View {
                         .frame(height: 130)
                     Text("Learning Journey")
                         .foregroundColor(.white)
-                        .font(.custom("SFProRounded-Bold", size: 32))
-                    
+                        .font(.system(size: 32 , weight: .bold , design: .rounded))
                 }
                 .clipShape(RoundedCornerItem(radius: 30, corners: [.bottomLeft, .bottomRight]))
                 
                 ZStack {
                     Image("awan")
                         .offset(x: 0, y: -100 )
-                    
                     VStack{
-                        
                         //            box info  mapel and value
                         if currentLevel == 0  {
                             withAnimation(.easeOut(duration: 1)){
-                               BoxEnable()
+                                BoxEnable()
                             }
-                            
-                            
                         } else {
                             withAnimation(.easeIn(duration: 1)){
-                                itemBoxDisable()
+                                ItemBoxDisable()
                             }
-                        
+                            
                         }
                         //            item gedung
                         ZStack {
-                            
                             Image(listImageLevel[currentLevel])
                                 .resizable()
                                 .scaledToFit()
@@ -67,7 +59,6 @@ struct LevelPageView: View {
                                 .frame(width : 82 , height: 100)
                                 .offset(y:130)
                         }
-                        
                         //             button
                         HStack{
                             Image("left arrow")
@@ -75,12 +66,11 @@ struct LevelPageView: View {
                                     withAnimation(.easeOut(duration: 0.5)){
                                         currentLevel = currentLevel - 1
                                     }
-                                   
+                                    
                                 }.disabled(currentLevel  == 0 )
                             
-                            
                             NavigationLink(isActive : $isShowNextScreen ,destination: {
-                               GateView()
+                                GateView()
                             }, label: {
                                 MButton(text: "Play",
                                         isFullWidth: true, background: Color("primaryOrange"), action: {
@@ -90,29 +80,23 @@ struct LevelPageView: View {
                             })
                             .disabled(currentLevel > 0)
                             
-                            
                             Image("right arrow")
                                 .onTapGesture {
                                     withAnimation(.easeIn(duration: 0.5)){
-                                        currentLevel = currentLevel + 1                                    }
-                                  
+                                        currentLevel = currentLevel + 1
+                                    }
                                 }
                                 .disabled(currentLevel  == 2 )
-                            
-                            
                         }
                         .offset(y:70)
                         .padding(.horizontal, 25)
-                        
-                        
                     }
-                    
                 }
                 
                 Spacer()
                 
             }
-            
+
             .ignoresSafeArea()
         }
     }
@@ -133,8 +117,8 @@ struct ItemBox: View {
             
             Text(title)
                 .foregroundColor( .white )
-                .font(.custom("SFProRounded-Reguler", size: 16))
-            
+                .font(.system(size: 16 , weight: .regular , design: .rounded))
+
             
             Spacer()
             
@@ -149,17 +133,17 @@ struct ItemBox: View {
 }
 
 
-struct itemBoxDisable : View {
+struct ItemBoxDisable : View {
     
     var body: some View{
         VStack(alignment: .leading, spacing: 10) {
             Text("To access this level you need: ")
-                .font(.custom("SFProRounded-Reguler", size: 16))
+                .font(.system(size: 16 , weight: .regular , design: .rounded))
                 .foregroundColor(Color.init(hex: "8D8D8D"))
-            contentBoxDisable(title: "Programming")
-            contentBoxDisable(title: "Logical Thinking")
-            contentBoxDisable(title: "Mathematic")
-            contentBoxDisable(title: "Design UI/UX")
+            ContentBixDisable(title: "Programming")
+            ContentBixDisable(title: "Logical Thinking")
+            ContentBixDisable(title: "Mathematic")
+            ContentBixDisable(title: "Design UI/UX")
         }
         .frame(width: 240, height: 161)
         .padding()
@@ -168,7 +152,7 @@ struct itemBoxDisable : View {
     }
 }
 
-struct contentBoxDisable : View {
+struct ContentBixDisable : View {
     var title : String
     
     var body : some View {
@@ -176,8 +160,8 @@ struct contentBoxDisable : View {
             
             Text(title)
                 .foregroundColor(Color.init(hex: "8D8D8D"))
-                .font(.custom("SFProRounded-Reguler", size: 16))
-            
+                .font(.system(size: 16 , weight: .regular , design: .rounded))
+
             
             Spacer()
             
@@ -192,8 +176,8 @@ struct contentBoxDisable : View {
 }
 
 struct BoxEnable: View {
-    @StateObject var score =  ScoreManager()
-
+    @EnvironmentObject  var score :  ScoreManager
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10){
             ItemBox(title: "Programming", score: score.scoreProgramming)

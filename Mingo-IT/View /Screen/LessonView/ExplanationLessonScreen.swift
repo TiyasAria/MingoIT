@@ -9,30 +9,25 @@ import SwiftUI
 
 struct ExplanationLessonScreen: View {
     let explanation : DataExplanationLesson
-    
+    @EnvironmentObject private var userManager : UserManager
     @State var currentIndex  = 0
     @State private var isShowingNextScreen = false
-    @StateObject private var isFirstLaunchScreen = UserManager()
-    @State private var mingoGatePosition: CGPoint = .zero
-
-    
-  
+   
     @ViewBuilder
     func chooseDestination() -> some View  {
-        if explanation.title == "Programming" {
-            ProgrammingView(mingoGatePosition: $mingoGatePosition)
-        } else if explanation.title == "Logical Thinking" {
-            LogicView(mingoGatePosition: $mingoGatePosition)
-        }else if explanation.title == "Mathematic" {
-            MathematicsView(mingoGatePosition: $mingoGatePosition)
-        } else {
-            UIUXView(mingoGatePosition: $mingoGatePosition)
+        switch explanation.title {
+        case "Programming" :
+            ProgrammingView()
+        case "Logical Thinking" :
+            LogicView()
+        case "Mathematic" :
+            MathematicsView()
+        default :
+            UIUXView()
         }
     }
     
     var body: some View {
-        
-        
         
         NavigationStack {
             VStack{
@@ -46,16 +41,14 @@ struct ExplanationLessonScreen: View {
                     
                     Text(explanation.title)
                         .frame(height: 30)
-                        .font(.custom("SFProRounded-Bold", size: 24))
+                        .font(.system(size: 24 , weight: .bold , design: .rounded))
                         .padding(10)
                         .foregroundColor(.white)
                         .offset(y: 20)
                         .padding(.bottom, 10)
                     
-                    
-                    
                     Text(explanation.description[currentIndex])
-                        .font(.custom("SFProRounded-Reguler", size: 20))
+                        .font(.system(size: 20 , weight: .regular , design: .rounded))
                         .padding(.horizontal,24)
                         .padding(.bottom, 30)
                         .frame(height: 250)
@@ -73,53 +66,34 @@ struct ExplanationLessonScreen: View {
                                 } else {
                                     print("masuk")
                                     self.isShowingNextScreen = true
-                                    if explanation.title == "Programming" {
-                                        isFirstLaunchScreen.isFirstLaunchProgramming.toggle()
-                                    } else if explanation.title == "Logical Thinking" {
-                                        isFirstLaunchScreen.isFirstLaunchLogic.toggle()
-                                    }else if explanation.title == "Mathematic" {
-                                        isFirstLaunchScreen.isFirstLaunchMath.toggle()
-                                      
-                                    } else {
-                                        isFirstLaunchScreen.isFirstLaunchDesign.toggle()
+                                    switch explanation.title {
+                                    case "Programming":
+                                        userManager.isFirstLaunchProgramming = false
+                                    case "Logical Thinking":
+                                        userManager.isFirstLaunchLogic = false
+                                    case "Mathematic":
+                                        userManager.isFirstLaunchMath = false
+                                    default:
+                                        userManager.isFirstLaunchDesign = false
                                     }
-                                   
-                                   
-                                  
-            
+
                                 }
                             }
                         }
                         )
                     })
                     .padding(.bottom, 20)
-                    
-                    
-                    
-                    
                 }
-                
                 .background(Color("primaryBlue"))
                 .clipShape(
                     RoundedCornerItem(radius: 30, corners: [.topLeft,.topRight])
                 )
-                
-                
             }
             .offset(y:60)
             .ignoresSafeArea()
             .navigationBarBackButtonHidden(true)
         }
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
 }
 
 struct ExplanationLessonScreen_Previews: PreviewProvider {

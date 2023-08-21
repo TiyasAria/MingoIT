@@ -33,8 +33,8 @@ struct QuizCard: View {
     @State private var userAnswerDrag: [String] = [String]()
     @State private var selectedId: String = ""
 
-    @StateObject private var userScore = ScoreManager()
-    @StateObject private var userManager = UserManager()
+    @EnvironmentObject private var userScore : ScoreManager
+    @EnvironmentObject private var userManager : UserManager
    
     
     var title: String?
@@ -232,18 +232,3 @@ struct QuizCard: View {
             }
         }
 }
-
-
-//struct Ree: PreviewProvider {
-//    static var previews: some View {
-//        QuizCard(
-//                materialType: .programming,
-////                isPassed: false,
-//                title: "What exactly Algorithm is?",
-//                answer: "A sets of Instructions",
-//                items: ["A sets of command", "A sets of Instructions", "A sets for making tea"],
-//                explanation: "Algorithms are sets of instructions of what steps to take to complete a task or solve a problem.",
-//                quizType: .multipleChoice
-//            )
-//    }
-//}
