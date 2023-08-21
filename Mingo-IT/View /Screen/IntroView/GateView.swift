@@ -13,6 +13,7 @@ struct GateView: View {
     @EnvironmentObject  var scoreManager : ScoreManager
     @EnvironmentObject  var lessonViewModel : LessonViewModel
 
+//     tambah ini ajaa 
     var body: some View {
         NavigationStack{
             ZStack{
