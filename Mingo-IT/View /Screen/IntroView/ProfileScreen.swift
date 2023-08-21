@@ -60,14 +60,7 @@ struct ProfileScreen: View {
             }
             .padding(25)
             
-            Button {
-                userManager.currentUsername = ""
-                userManager.currentUserSignIn = false
-            } label: {
-                Text("Sign Out")
-                    .font(.body)
-            }
-
+           
             Text("Level 1")
                 .frame(width: 310)
                 .padding(17)

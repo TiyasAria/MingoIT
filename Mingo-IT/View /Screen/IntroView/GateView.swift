@@ -98,13 +98,14 @@ struct GateView: View {
                 }
                 
                 GeometryReader { geometry in
-                    if isBuildingOpen {
-                        NavigationLink(destination: Level2View()){
-                            openedGateImage(width: geometry.size.width)
-                        }
-                    } else {
-                        closedGateImage(width: geometry.size.width)
-                    }
+//                    if isBuildingOpen {
+////                        NavigationLink(destination: Level2View())
+//                        {
+//                            openedGateImage(width: geometry.size.width)
+//                        }
+//                    } else {
+//                        closedGateImage(width: geometry.size.width)
+//                    }
                     
                     NavigationLink(destination: {
                         HomeScreen()

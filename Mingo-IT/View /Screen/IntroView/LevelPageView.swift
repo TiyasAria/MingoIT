@@ -22,7 +22,7 @@ struct LevelPageView: View {
             VStack(alignment: .center){
                 //             title item
                 ZStack{
-                    Color("primaryBlue")
+                    Color.init(hex: "#54AAB4")
                         .frame(height: 130)
                     Text("Learning Journey")
                         .foregroundColor(.white)
